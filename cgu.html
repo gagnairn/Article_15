@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 15 — Conditions générales d'utilisation</title>
+    <meta name="description" content="Conditions générales d'utilisation de l'application Article 15.">
+    <style>
+        :root {
+            --bleu: #000091;
+            --rouge: #E1000F;
+            --blanc: #FFFFFF;
+            --gris-clair: #F6F6F6;
+            --gris-texte: #3A3A3A;
+            --bleu-clair: #E8EDFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--gris-texte);
+            line-height: 1.7;
+            background: var(--gris-clair);
+        }
+
+        header {
+            background: var(--bleu);
+            color: var(--blanc);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        header nav a {
+            color: var(--blanc);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        header nav a:hover {
+            opacity: 1;
+        }
+
+        .lang-switch {
+            display: flex;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: var(--blanc);
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .lang-switch button.active {
+            background: rgba(255,255,255,0.25);
+            opacity: 1;
+        }
+
+        .tricolore {
+            display: flex;
+            height: 4px;
+        }
+
+        .tricolore span { flex: 1; }
+        .tricolore .bleu { background: #0055A4; }
+        .tricolore .blanc { background: #FFFFFF; }
+        .tricolore .rouge { background: #EF4135; }
+
+        main {
+            max-width: 720px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--bleu);
+            margin-bottom: 0.3rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--blanc);
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: var(--bleu);
+            margin-bottom: 0.6rem;
+        }
+
+        .card .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bleu);
+            color: var(--blanc);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 0.6rem;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card a {
+            color: var(--bleu);
+        }
+
+        .article-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .article-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-row p {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        [data-lang] { display: none; }
+        [data-lang="fr"] { display: block; }
+        .article-row[data-lang] { display: none; }
+        .article-row[data-lang="fr"] { display: flex; }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            header nav {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                margin: 1.5rem auto;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Article 15</div>
+        <nav>
+            <a href="privacy.html" data-lang="fr">Confidentialité</a>
+            <a href="privacy.html" data-lang="en">Privacy</a>
+            <a href="cgu.html" data-lang="fr">CGU</a>
+            <a href="cgu.html" data-lang="en">Terms</a>
+            <div class="lang-switch">
+                <button id="lang-fr" class="active" onclick="setLang('fr')">FR</button>
+                <button id="lang-en" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
+    <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+
+    <main>
+        <!-- FR -->
+        <h1 data-lang="fr">Conditions générales d'utilisation</h1>
+        <p class="subtitle" data-lang="fr">Dernière mise à jour : 17 avril 2026</p>
+        <!-- EN -->
+        <h1 data-lang="en">Terms of Use</h1>
+        <p class="subtitle" data-lang="en">Last updated: April 17, 2026</p>
+
+        <!-- Objet / Purpose -->
+        <div class="card">
+            <h2 data-lang="fr">Objet</h2>
+            <p data-lang="fr">Les présentes conditions générales d'utilisation (CGU) régissent l'utilisation de l'application mobile Article 15, disponible sur l'App Store d'Apple. En utilisant l'application, vous acceptez sans réserve les présentes conditions.</p>
+            <h2 data-lang="en">Purpose</h2>
+            <p data-lang="en">These Terms of Use govern the use of the Article 15 mobile application, available on the Apple App Store. By using the application, you unconditionally accept these terms.</p>
+        </div>
+
+        <!-- Éditeur / Publisher -->
+        <div class="card">
+            <h2 data-lang="fr">Éditeur</h2>
+            <p data-lang="fr">L'application Article 15 est éditée à titre personnel par un développeur indépendant, non affilié à aucun parti politique, institution ou organisation.</p>
+            <p data-lang="fr">Contact : <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <h2 data-lang="en">Publisher</h2>
+            <p data-lang="en">The Article 15 application is published independently by an individual developer, not affiliated with any political party, institution, or organization.</p>
+            <p data-lang="en">Contact: <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+        </div>
+
+        <!-- Description du service / Service description -->
+        <div class="card">
+            <h2 data-lang="fr">Description du service</h2>
+            <p data-lang="fr">Article 15 est une application citoyenne gratuite et indépendante qui permet de consulter des données publiques relatives à la vie politique, institutionnelle et citoyenne française. Les données affichées proviennent exclusivement de sources publiques et ouvertes.</p>
+            <h2 data-lang="en">Service description</h2>
+            <p data-lang="en">Article 15 is a free and independent civic application that provides access to public data related to French political, institutional, and civic life. All displayed data comes exclusively from public and open sources.</p>
+        </div>
+
+        <!-- Conditions d'utilisation / Terms of use -->
+        <div class="card">
+            <h2 data-lang="fr">Conditions d'utilisation</h2>
+            <h2 data-lang="en">Conditions of use</h2>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">1</span>
+                <p>L'application est un outil de consultation citoyenne à vocation informative. Elle ne constitue en aucun cas un conseil juridique, politique ou financier.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">1</span>
+                <p>The application is a civic information tool. It does not constitute legal, political, or financial advice under any circumstances.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">2</span>
+                <p>Les données affichées proviennent de sources publiques tierces et sont présentées en l'état, sans modification éditoriale. L'éditeur ne garantit ni leur exactitude, ni leur exhaustivité, ni leur actualité.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">2</span>
+                <p>The displayed data comes from third-party public sources and is presented as-is, without editorial modification. The publisher does not guarantee its accuracy, completeness, or timeliness.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">3</span>
+                <p>L'utilisateur s'engage à utiliser l'application dans le respect des lois en vigueur et à ne pas en détourner l'usage à des fins de désinformation, de harcèlement ou de diffamation.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">3</span>
+                <p>The user agrees to use the application in compliance with applicable laws and not to misuse it for disinformation, harassment, or defamation purposes.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">4</span>
+                <p>L'éditeur se réserve le droit de modifier, suspendre ou interrompre l'application à tout moment, sans préavis ni indemnité.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">4</span>
+                <p>The publisher reserves the right to modify, suspend, or discontinue the application at any time, without prior notice or compensation.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">5</span>
+                <p>L'application ne collecte aucune donnée personnelle. Aucun compte utilisateur n'est requis. Aucun traceur, cookie ou outil d'analyse comportementale n'est intégré.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">5</span>
+                <p>The application does not collect any personal data. No user account is required. No tracker, cookie, or behavioral analytics tool is integrated.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">6</span>
+                <p>L'application utilise Firebase (Google) uniquement pour l'envoi volontaire de retours utilisateurs et les rapports de crash anonymes.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">6</span>
+                <p>The application uses Firebase (Google) solely for voluntary user feedback submissions and anonymous crash reports.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">7</span>
+                <p>L'éditeur ne saurait être tenu responsable de toute décision prise sur la base des informations présentées, ni des éventuelles interruptions de service liées aux sources de données tierces.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">7</span>
+                <p>The publisher shall not be held liable for any decision made based on the information presented, nor for any service interruptions related to third-party data sources.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">8</span>
+                <p>Les présentes conditions sont régies par le droit français. Tout litige sera soumis aux juridictions françaises compétentes.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">8</span>
+                <p>These terms are governed by French law. Any dispute shall be submitted to the competent French courts.</p>
+            </div>
+        </div>
+
+        <!-- Propriété intellectuelle / Intellectual property -->
+        <div class="card">
+            <h2 data-lang="fr">Propriété intellectuelle</h2>
+            <p data-lang="fr">Le code source de l'application est propriétaire. Toute reproduction ou distribution non autorisée est interdite.</p>
+            <p data-lang="fr">Les données affichées proviennent de sources publiques ouvertes et restent la propriété de leurs éditeurs respectifs. Les licences applicables sont détaillées dans l'application (onglet "À propos" > "Légal").</p>
+            <h2 data-lang="en">Intellectual property</h2>
+            <p data-lang="en">The application's source code is proprietary. Any unauthorized reproduction or distribution is prohibited.</p>
+            <p data-lang="en">The displayed data comes from open public sources and remains the property of their respective publishers. Applicable licenses are detailed in the application (under "About" > "Legal").</p>
+        </div>
+
+        <!-- Limitation de responsabilité / Limitation of liability -->
+        <div class="card">
+            <h2 data-lang="fr">Limitation de responsabilité</h2>
+            <p data-lang="fr">Article 15 est une application à but informatif. L'éditeur ne garantit ni l'exactitude, ni l'exhaustivité, ni l'actualité des informations diffusées.</p>
+            <p data-lang="fr">L'éditeur ne saurait être tenu responsable des dommages directs ou indirects résultant de l'utilisation de l'application ou de l'impossibilité de l'utiliser.</p>
+            <h2 data-lang="en">Limitation of liability</h2>
+            <p data-lang="en">Article 15 is an informational application. The publisher does not guarantee the accuracy, completeness, or timeliness of the information provided.</p>
+            <p data-lang="en">The publisher shall not be held liable for any direct or indirect damages resulting from the use of the application or the inability to use it.</p>
+        </div>
+
+        <!-- Données personnelles / Personal data -->
+        <div class="card">
+            <h2 data-lang="fr">Données personnelles</h2>
+            <p data-lang="fr">L'application ne collecte aucune donnée personnelle. Pour plus de détails, consultez notre <a href="privacy.html">politique de confidentialité</a>.</p>
+            <h2 data-lang="en">Personal data</h2>
+            <p data-lang="en">The application does not collect any personal data. For more details, please refer to our <a href="privacy.html">privacy policy</a>.</p>
+        </div>
+
+        <!-- Modifications des CGU / Changes to Terms -->
+        <div class="card">
+            <h2 data-lang="fr">Modifications des CGU</h2>
+            <p data-lang="fr">Les présentes CGU peuvent être modifiées à tout moment. La version en vigueur est celle accessible depuis cette page. La poursuite de l'utilisation de l'application après modification vaut acceptation des nouvelles conditions.</p>
+            <h2 data-lang="en">Changes to these Terms</h2>
+            <p data-lang="en">These Terms of Use may be modified at any time. The applicable version is the one available on this page. Continued use of the application after any modification constitutes acceptance of the new terms.</p>
+        </div>
+    </main>
+
+    <footer>
+        <span data-lang="fr">Article 15 — Application citoyenne indépendante</span>
+        <span data-lang="en">Article 15 — Independent civic application</span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-lang]').forEach(function(el) {
+                if (el.dataset.lang === lang) {
+                    el.style.display = el.classList.contains('article-row') ? 'flex' : '';
+                    el.style.display = el.style.display || (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline' : 'block');
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('legal-lang', lang);
+        }
+        var saved = localStorage.getItem('legal-lang');
+        if (saved) setLang(saved);
+    </script>
+</body>
+</html>
