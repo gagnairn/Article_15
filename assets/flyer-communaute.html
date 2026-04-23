@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 15 — Flyer Communaut&eacute;s enseignants</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: #e5e5e5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .flyer {
+            width: 1080px;
+            background: #fff;
+            overflow: hidden;
+            border-radius: 0;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #000091 0%, #1a1a8a 40%, #0d0d4a 100%);
+            color: #fff;
+            padding: 45px 50px 40px;
+            position: relative;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.025);
+        }
+        .bg-c1 { width: 400px; height: 400px; top: -120px; right: -80px; }
+
+        .tricolore {
+            display: flex;
+            height: 5px;
+            width: 100%;
+        }
+        .tricolore .bleu { flex: 1; background: #0055A4; }
+        .tricolore .blanc { flex: 1; background: #FFFFFF; }
+        .tricolore .rouge { flex: 1; background: #EF4135; }
+
+        .header-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .header h1 {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .header-badge {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            padding: 8px 22px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 22px;
+            opacity: 0.9;
+            line-height: 1.45;
+            max-width: 700px;
+        }
+
+        .header p strong { color: #8BC6FF; }
+
+        /* Stats */
+        .stats-bar {
+            display: flex;
+            background: #000091;
+        }
+
+        .stats-bar .stat {
+            flex: 1;
+            text-align: center;
+            padding: 22px 10px;
+            color: #fff;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stats-bar .stat:last-child { border-right: none; }
+
+        .stat-number {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.6;
+            margin-top: 2px;
+        }
+
+        /* Body */
+        .body {
+            padding: 40px 50px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000091;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tri-mini {
+            display: inline-flex;
+            height: 3px;
+            width: 40px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .tri-mini span { flex: 1; }
+        .tri-mini .b { background: #0055A4; }
+        .tri-mini .w { background: #ccc; }
+        .tri-mini .r { background: #EF4135; }
+
+        /* Features — 3 columns */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: #F6F6F6;
+            border-radius: 14px;
+            padding: 22px 24px;
+            border-left: 4px solid #000091;
+        }
+
+        .feature-card .fc-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card .fc-icon {
+            width: 40px;
+            height: 40px;
+            background: #E8EDFF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-card .fc-top strong {
+            font-size: 17px;
+            color: #1a1a1a;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.45;
+        }
+
+        /* Parcours — horizontal ribbon */
+        .parcours-ribbon {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .parcours-chip {
+            background: #F6F6F6;
+            border-radius: 10px;
+            padding: 14px 18px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .parcours-chip .p-level {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+        }
+
+        .p-d { background: #D5F5E3; color: #14653A; }
+        .p-i { background: #FEF9E7; color: #7D6608; }
+        .p-a { background: #FADBD8; color: #922B21; }
+
+        .parcours-chip strong {
+            display: block;
+            font-size: 13.5px;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        .parcours-chip span {
+            font-size: 11.5px;
+            color: #888;
+        }
+
+        /* Guarantees */
+        .guarantees-grid {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .g-card {
+            flex: 1;
+            background: #F6F6F6;
+            border-radius: 10px;
+            padding: 16px 18px;
+            text-align: center;
+        }
+
+        .g-card .g-icon {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .g-card strong {
+            display: block;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        .g-card span {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* CTA */
+        .cta-bar {
+            background: #000091;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+        }
+
+        .cta-left h2 {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .cta-left p {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .cta-left .cta-links {
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        .cta-left .cta-links a {
+            color: #8BC6FF;
+            text-decoration: none;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #000091;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flyer">
+    <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+
+    <div class="header">
+        <div class="bg-circle bg-c1"></div>
+        <div class="header-inner">
+            <div class="header-top">
+                <h1>Article 15</h1>
+                <div class="header-badge">Application iOS gratuite</div>
+            </div>
+            <p>L'app citoyenne qui rassemble les donn&eacute;es publiques sur les institutions, les &eacute;lus et la vie d&eacute;mocratique. <strong>Un compl&eacute;ment id&eacute;al pour l'EMC, du coll&egrave;ge au sup&eacute;rieur.</strong></p>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat"><div class="stat-number">5</div><div class="stat-label">onglets th&eacute;matiques</div></div>
+        <div class="stat"><div class="stat-number">7</div><div class="stat-label">parcours avec quiz</div></div>
+        <div class="stat"><div class="stat-number">140+</div><div class="stat-label">institutions d&eacute;taill&eacute;es</div></div>
+        <div class="stat"><div class="stat-number">120+</div><div class="stat-label">&eacute;crans sp&eacute;cialis&eacute;s</div></div>
+        <div class="stat"><div class="stat-number">190</div><div class="stat-label">termes au glossaire</div></div>
+        <div class="stat"><div class="stat-number">30+</div><div class="stat-label">sources officielles</div></div>
+    </div>
+
+    <div class="body">
+        <div class="section-title">
+            <div class="tri-mini"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+            Ce que vous trouverez dans l'app
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="fc-top">
+                    <div class="fc-icon">&#x1F3DB;&#xFE0F;</div>
+                    <strong>Institutions vivantes</strong>
+                </div>
+                <p>124 institutions fran&ccedil;aises et 17 internationales avec donn&eacute;es en temps r&eacute;el, budget, annuaire et organigramme.</p>
+            </div>
+            <div class="feature-card">
+                <div class="fc-top">
+                    <div class="fc-icon">&#x1F5F3;&#xFE0F;</div>
+                    <strong>D&eacute;mocratie en action</strong>
+                </div>
+                <p>Scrutins en direct, p&eacute;titions citoyennes, travaux parlementaires, Journal Officiel, promesses &eacute;lectorales.</p>
+            </div>
+            <div class="feature-card">
+                <div class="fc-top">
+                    <div class="fc-icon">&#x1F50D;</div>
+                    <strong>Transparence</strong>
+                </div>
+                <p>Lobbying (HATVP), d&eacute;clarations de patrimoine, co&ucirc;t de la d&eacute;mocratie, 15 dossiers Focus Sur.</p>
+            </div>
+            <div class="feature-card">
+                <div class="fc-top">
+                    <div class="fc-icon">&#x1F4DA;</div>
+                    <strong>Textes &amp; droit</strong>
+                </div>
+                <p>DDHC, Constitution, 19 trait&eacute;s internationaux, hi&eacute;rarchie des normes, recherche juridique int&eacute;gr&eacute;e.</p>
+            </div>
+            <div class="feature-card">
+                <div class="fc-top">
+                    <div class="fc-icon">&#x1F331;</div>
+                    <strong>Enjeux contemporains</strong>
+                </div>
+                <p>&Eacute;nergie (RTE), &eacute;cologie, budget avec simulateur, sant&eacute;, retraites, d&eacute;fense, fonction publique.</p>
+            </div>
+            <div class="feature-card">
+                <div class="fc-top">
+                    <div class="fc-icon">&#x1F4F0;</div>
+                    <strong>Actualit&eacute; en continu</strong>
+                </div>
+                <p>Fil parlementaire, questions au gouvernement, communiqu&eacute;s, textes l&eacute;gislatifs en cours.</p>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <div class="tri-mini"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+            7 parcours p&eacute;dagogiques int&eacute;gr&eacute;s
+        </div>
+
+        <div class="parcours-ribbon">
+            <div class="parcours-chip"><span class="p-level p-d">D&eacute;butant</span><strong>Fondamentaux de la R&eacute;publique</strong><span>3e &ndash; 2de</span></div>
+            <div class="parcours-chip"><span class="p-level p-d">D&eacute;butant</span><strong>Voter, mode d'emploi</strong><span>3e &ndash; 2de</span></div>
+            <div class="parcours-chip"><span class="p-level p-i">Interm&eacute;diaire</span><strong>Comprendre les institutions</strong><span>1re &ndash; Tle</span></div>
+            <div class="parcours-chip"><span class="p-level p-i">Interm&eacute;diaire</span><strong>Soci&eacute;t&eacute; et d&eacute;mocratie</strong><span>1re &ndash; Tle</span></div>
+            <div class="parcours-chip"><span class="p-level p-i">Interm&eacute;diaire</span><strong>D&eacute;crypter l'information</strong><span>1re &ndash; Tle</span></div>
+            <div class="parcours-chip"><span class="p-level p-a">Avanc&eacute;</span><strong>La France dans le monde</strong><span>Tle &ndash; Sup</span></div>
+            <div class="parcours-chip"><span class="p-level p-a">Avanc&eacute;</span><strong>Histoire coloniale</strong><span>Tle &ndash; Sup</span></div>
+        </div>
+
+        <div class="section-title">
+            <div class="tri-mini"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+            Nos garanties
+        </div>
+
+        <div class="guarantees-grid">
+            <div class="g-card"><div class="g-icon">&#x1F4B0;</div><strong>100% gratuite</strong><span>Sans abonnement ni achat int&eacute;gr&eacute;</span></div>
+            <div class="g-card"><div class="g-icon">&#x1F6AB;</div><strong>Z&eacute;ro pub</strong><span>Aucun sponsor ni influence</span></div>
+            <div class="g-card"><div class="g-icon">&#x1F512;</div><strong>RGPD</strong><span>Aucune donn&eacute;e collect&eacute;e</span></div>
+            <div class="g-card"><div class="g-icon">&#x2696;&#xFE0F;</div><strong>Non partisane</strong><span>Donn&eacute;es brutes, z&eacute;ro opinion</span></div>
+            <div class="g-card"><div class="g-icon">&#x1F4C2;</div><strong>Open data</strong><span>Sources officielles v&eacute;rifiables</span></div>
+            <div class="g-card"><div class="g-icon">&#x1F64B;</div><strong>Projet citoyen</strong><span>D&eacute;velopp&eacute;e b&eacute;n&eacute;volement</span></div>
+        </div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="cta-left">
+            <h2>T&eacute;l&eacute;chargez Article 15</h2>
+            <p>Gratuite &middot; Compatible iPhone et iPad</p>
+            <div class="cta-links">
+                <a href="mailto:article15.app@proton.me">article15.app@proton.me</a> &middot;
+                <a href="https://gagnairn.github.io/Article_15/">gagnairn.github.io/Article_15</a>
+            </div>
+        </div>
+        <a href="https://apps.apple.com/app/article-15" class="cta-button">Disponible sur l'App Store</a>
+    </div>
+</div>
+
+</body>
+</html>

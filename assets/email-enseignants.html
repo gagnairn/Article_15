@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 15 — Email Enseignants</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: #e5e5e5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .email {
+            width: 600px;
+            background: #fff;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #000091 0%, #1a1a8a 40%, #0d0d4a 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 40px 35px;
+            position: relative;
+        }
+
+        .tricolore {
+            display: flex;
+            height: 4px;
+            width: 100%;
+        }
+        .tricolore .bleu { flex: 1; background: #0055A4; }
+        .tricolore .blanc { flex: 1; background: #FFFFFF; }
+        .tricolore .rouge { flex: 1; background: #EF4135; }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            padding: 5px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+        }
+
+        .header h1 {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.5;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        /* Stats strip */
+        .stats-strip {
+            display: flex;
+            background: #000091;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stats-strip .stat {
+            flex: 1;
+            text-align: center;
+            padding: 18px 10px;
+            color: #fff;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stats-strip .stat:last-child { border-right: none; }
+
+        .stat-number {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        /* Body */
+        .body {
+            padding: 35px 40px;
+        }
+
+        .intro {
+            font-size: 15px;
+            color: #3A3A3A;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000091;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .tri {
+            display: inline-flex;
+            height: 3px;
+            width: 40px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .section-title .tri span { flex: 1; }
+        .section-title .tri .b { background: #0055A4; }
+        .section-title .tri .w { background: #ccc; }
+        .section-title .tri .r { background: #EF4135; }
+
+        /* Features */
+        .features {
+            margin-bottom: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .feature:last-child { border-bottom: none; }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            background: #E8EDFF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-size: 14px;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+
+        .feature-text span {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Parcours highlight */
+        .parcours-box {
+            background: #F6F6F6;
+            border-radius: 10px;
+            padding: 22px 24px;
+            margin-bottom: 30px;
+        }
+
+        .parcours-box h3 {
+            font-size: 15px;
+            color: #000091;
+            margin-bottom: 14px;
+        }
+
+        .parcours-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .parcours-item {
+            font-size: 13px;
+            color: #3A3A3A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .parcours-level {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .lvl-d { background: #D5F5E3; color: #14653A; }
+        .lvl-i { background: #FEF9E7; color: #7D6608; }
+        .lvl-a { background: #FADBD8; color: #922B21; }
+
+        /* Guarantees */
+        .guarantees {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .guarantee {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #3A3A3A;
+        }
+
+        .guarantee .check {
+            color: #268541;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        /* CTA */
+        .cta-box {
+            text-align: center;
+            padding: 25px;
+            background: #F6F6F6;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .cta-box p {
+            font-size: 14px;
+            color: #3A3A3A;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #000091;
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 22px 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        .footer a {
+            color: #000091;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="email">
+    <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+
+    <div class="header">
+        <div class="header-badge">Application iOS gratuite</div>
+        <h1>Article 15</h1>
+        <p>La d&eacute;mocratie fran&ccedil;aise dans la poche de vos &eacute;l&egrave;ves</p>
+    </div>
+
+    <div class="stats-strip">
+        <div class="stat"><div class="stat-number">7</div><div class="stat-label">parcours avec quiz</div></div>
+        <div class="stat"><div class="stat-number">140+</div><div class="stat-label">institutions</div></div>
+        <div class="stat"><div class="stat-number">190</div><div class="stat-label">termes au glossaire</div></div>
+        <div class="stat"><div class="stat-number">30+</div><div class="stat-label">sources officielles</div></div>
+    </div>
+
+    <div class="body">
+        <p class="intro">
+            <strong>Article 15</strong> est une application citoyenne, gratuite et ind&eacute;pendante qui rassemble les donn&eacute;es publiques sur les institutions, les &eacute;lus, la transparence et la vie d&eacute;mocratique fran&ccedil;aise.
+            Con&ccedil;ue comme un compl&eacute;ment p&eacute;dagogique pour l'EMC, du coll&egrave;ge au sup&eacute;rieur.
+        </p>
+
+        <div class="section-title">
+            <div class="tri"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+            Ce que vous trouverez dans l'app
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">&#x1F3DB;&#xFE0F;</div>
+                <div class="feature-text">
+                    <strong>Institutions vivantes</strong>
+                    <span>124 institutions fran&ccedil;aises et 17 internationales avec donn&eacute;es en temps r&eacute;el, budget, annuaire et organigramme</span>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F5F3;&#xFE0F;</div>
+                <div class="feature-text">
+                    <strong>D&eacute;mocratie en action</strong>
+                    <span>Scrutins en direct, p&eacute;titions citoyennes, travaux parlementaires, Journal Officiel, promesses &eacute;lectorales</span>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F50D;</div>
+                <div class="feature-text">
+                    <strong>Transparence &amp; esprit critique</strong>
+                    <span>Lobbying (HATVP), d&eacute;clarations de patrimoine, co&ucirc;t de la d&eacute;mocratie, 15 dossiers Focus Sur</span>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F4DA;</div>
+                <div class="feature-text">
+                    <strong>Textes fondamentaux</strong>
+                    <span>DDHC, Constitution, 19 trait&eacute;s internationaux, hi&eacute;rarchie des normes, recherche juridique</span>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">&#x1F331;</div>
+                <div class="feature-text">
+                    <strong>Enjeux contemporains</strong>
+                    <span>&Eacute;nergie (RTE), &eacute;cologie, budget avec simulateur, revenus, sant&eacute;, retraites, d&eacute;fense</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <div class="tri"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+            7 parcours p&eacute;dagogiques int&eacute;gr&eacute;s
+        </div>
+
+        <div class="parcours-box">
+            <div class="parcours-list">
+                <div class="parcours-item"><span class="parcours-level lvl-d">3e-2de</span> Fondamentaux de la R&eacute;publique</div>
+                <div class="parcours-item"><span class="parcours-level lvl-d">3e-2de</span> Voter, mode d'emploi</div>
+                <div class="parcours-item"><span class="parcours-level lvl-i">1re-Tle</span> Comprendre les institutions</div>
+                <div class="parcours-item"><span class="parcours-level lvl-i">1re-Tle</span> Soci&eacute;t&eacute; et d&eacute;mocratie</div>
+                <div class="parcours-item"><span class="parcours-level lvl-i">1re-Tle</span> D&eacute;crypter l'information</div>
+                <div class="parcours-item"><span class="parcours-level lvl-a">Tle-Sup</span> La France dans le monde</div>
+                <div class="parcours-item"><span class="parcours-level lvl-a">Tle-Sup</span> Histoire coloniale &amp; Outre-mer</div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <div class="tri"><span class="b"></span><span class="w"></span><span class="r"></span></div>
+            Nos garanties
+        </div>
+
+        <div class="guarantees">
+            <div class="guarantee"><span class="check">&#x2713;</span> 100% gratuite, sans achat int&eacute;gr&eacute;</div>
+            <div class="guarantee"><span class="check">&#x2713;</span> Z&eacute;ro publicit&eacute;</div>
+            <div class="guarantee"><span class="check">&#x2713;</span> Conforme RGPD</div>
+            <div class="guarantee"><span class="check">&#x2713;</span> Aucune donn&eacute;e collect&eacute;e</div>
+            <div class="guarantee"><span class="check">&#x2713;</span> Sources officielles uniquement</div>
+            <div class="guarantee"><span class="check">&#x2713;</span> Non partisane</div>
+        </div>
+
+        <div class="cta-box">
+            <p>T&eacute;l&eacute;chargez Article 15 gratuitement et d&eacute;couvrez comment l'int&eacute;grer dans vos cours d'EMC, d'histoire-g&eacute;ographie ou de sciences politiques.</p>
+            <a href="https://apps.apple.com/app/article-15" class="cta-button">T&eacute;l&eacute;charger sur l'App Store</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            <strong>Article 15</strong> &mdash; Application citoyenne ind&eacute;pendante<br>
+            <a href="mailto:article15.app@proton.me">article15.app@proton.me</a> &middot;
+            <a href="https://gagnairn.github.io/Article_15/">gagnairn.github.io/Article_15</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
