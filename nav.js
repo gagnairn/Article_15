@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { fr: 'Programmes',   en: 'Programs',      href: 'index.html#programme' },
         { fr: 'Garanties',    en: 'Guarantees',    href: 'index.html#garanties' },
         { fr: 'Contact',      en: 'Contact',       href: 'index.html#contact' },
+        { fr: 'À propos',     en: 'About',         href: 'index.html#a-propos' },
         { fr: 'Confidentialité', en: 'Privacy',     href: 'privacy.html' },
         { fr: 'CGU',          en: 'Terms',          href: 'cgu.html' },
         { fr: 'Accessibilité', en: 'Accessibility', href: 'accessibility.html' },
