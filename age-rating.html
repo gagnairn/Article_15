@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 15 — Classification d'âge (CLUF)</title>
+    <meta name="description" content="Classification d'âge et contrat de licence utilisateur final (CLUF) de l'application Article 15.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta property="og:title" content="Article 15 — Classification d'âge (CLUF)">
+    <meta property="og:description" content="Classification d'âge et contrat de licence utilisateur final (CLUF) de l'application Article 15.">
+    <meta property="og:image" content="icon.png">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bleu: #000091;
+            --rouge: #E1000F;
+            --blanc: #FFFFFF;
+            --gris-clair: #F6F6F6;
+            --gris-texte: #3A3A3A;
+            --bleu-clair: #E8EDFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--gris-texte);
+            line-height: 1.7;
+            background: var(--gris-clair);
+        }
+
+        header {
+            background: var(--bleu);
+            color: var(--blanc);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        header nav a {
+            color: var(--blanc);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        header nav a:hover {
+            opacity: 1;
+        }
+
+        .lang-switch {
+            display: flex;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: var(--blanc);
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .lang-switch button.active {
+            background: rgba(255,255,255,0.25);
+            opacity: 1;
+        }
+
+        .tricolore {
+            display: flex;
+            height: 4px;
+        }
+
+        .tricolore span { flex: 1; }
+        .tricolore .bleu { background: #0055A4; }
+        .tricolore .blanc { background: #FFFFFF; }
+        .tricolore .rouge { background: #EF4135; }
+
+        main {
+            max-width: 720px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--bleu);
+            margin-bottom: 0.3rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--blanc);
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: var(--bleu);
+            margin-bottom: 0.6rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card a {
+            color: var(--bleu);
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.5rem 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .card ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .age-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bleu);
+            color: var(--blanc);
+            font-size: 1.5rem;
+            font-weight: 700;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .rating-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .rating-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            padding: 0.4rem 0;
+        }
+
+        .rating-item .check {
+            color: #1E8449;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .rating-item .cross {
+            color: #C0392B;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .article-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .article-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .article-row p {
+            margin: 0;
+        }
+
+        .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bleu);
+            color: var(--blanc);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 0.6rem;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        [data-lang] { display: none; }
+        [data-lang="fr"] { display: block; }
+        a[data-lang="fr"] { display: inline; }
+        .article-row[data-lang] { display: none; }
+        .article-row[data-lang="fr"] { display: flex; }
+        .rating-grid[data-lang] { display: none; }
+        .rating-grid[data-lang="fr"] { display: grid; }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            header nav {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                margin: 1.5rem auto;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .rating-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Article 15</a>
+        <nav>
+            <a href="index.html" data-lang="fr">Accueil</a>
+            <a href="index.html" data-lang="en">Home</a>
+            <a href="index.html#enseignants" data-lang="fr">Enseignants</a>
+            <a href="index.html#enseignants" data-lang="en">Teachers</a>
+            <a href="index.html#parcours" data-lang="fr">Parcours</a>
+            <a href="index.html#parcours" data-lang="en">Paths</a>
+            <a href="index.html#fonctionnalites" data-lang="fr">Contenu</a>
+            <a href="index.html#fonctionnalites" data-lang="en">Content</a>
+            <a href="index.html#programme" data-lang="fr">Programmes</a>
+            <a href="index.html#programme" data-lang="en">Programs</a>
+            <a href="index.html#contact" data-lang="fr">Contact</a>
+            <a href="index.html#contact" data-lang="en">Contact</a>
+            <a href="privacy.html" data-lang="fr">Confidentialité</a>
+            <a href="privacy.html" data-lang="en">Privacy</a>
+            <a href="cgu.html" data-lang="fr">CGU</a>
+            <a href="cgu.html" data-lang="en">Terms</a>
+            <a href="accessibility.html" data-lang="fr">Accessibilité</a>
+            <a href="accessibility.html" data-lang="en">Accessibility</a>
+            <a href="age-rating.html" data-lang="fr">Classification d'âge</a>
+            <a href="age-rating.html" data-lang="en">Age rating</a>
+        </nav>
+    </header>
+    <div style="background:var(--bleu);text-align:center;padding:0.4rem 0;">
+        <div class="lang-switch" style="display:inline-flex;">
+            <button id="lang-fr" class="active" onclick="setLang('fr')">FR</button>
+            <button id="lang-en" onclick="setLang('en')">EN</button>
+        </div>
+    </div>
+    <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+
+    <main>
+        <!-- FR -->
+        <h1 data-lang="fr">Classification d'âge et CLUF</h1>
+        <p class="subtitle" data-lang="fr">Dernière mise à jour : 23 avril 2026</p>
+        <!-- EN -->
+        <h1 data-lang="en">Age Rating and EULA</h1>
+        <p class="subtitle" data-lang="en">Last updated: April 23, 2026</p>
+
+        <!-- Classification App Store / App Store Rating -->
+        <div class="card">
+            <h2 data-lang="fr">Classification sur l'App Store</h2>
+            <div class="age-badge" data-lang="fr">4+</div>
+            <p data-lang="fr">Article 15 est classée <strong>4+</strong> sur l'App Store d'Apple, la classification la plus permissive. Cette classification signifie que l'application ne contient aucun contenu jugé inapproprié pour les enfants de tout âge.</p>
+            <h2 data-lang="en">App Store Rating</h2>
+            <div class="age-badge" data-lang="en">4+</div>
+            <p data-lang="en">Article 15 is rated <strong>4+</strong> on the Apple App Store, the most permissive rating. This means the application contains no content deemed inappropriate for children of any age.</p>
+        </div>
+
+        <!-- Détail de la classification / Rating details -->
+        <div class="card">
+            <h2 data-lang="fr">Détail de la classification Apple</h2>
+            <p data-lang="fr">Selon les critères de classification de contenu d'Apple, Article 15 ne contient :</p>
+            <h2 data-lang="en">Apple Rating Details</h2>
+            <p data-lang="en">According to Apple's content rating criteria, Article 15 contains:</p>
+
+            <div class="rating-grid" data-lang="fr">
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucune violence</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucun contenu sexuel</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucun langage grossier</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucune référence aux drogues</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucun thème mature</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucun jeu de hasard simulé</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucun contenu d'horreur ou de peur</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> Aucun contenu généré par les utilisateurs</div>
+            </div>
+            <div class="rating-grid" data-lang="en">
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No violence</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No sexual content</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No profanity</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No drug references</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No mature themes</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No simulated gambling</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No horror or fear content</div>
+                <div class="rating-item"><span class="check" aria-hidden="true">&#x2713;</span> No user-generated content</div>
+            </div>
+        </div>
+
+        <!-- Nature du contenu / Content nature -->
+        <div class="card">
+            <h2 data-lang="fr">Nature du contenu</h2>
+            <p data-lang="fr">Article 15 est une application à vocation <strong>éducative et informative</strong>. Son contenu est exclusivement constitué de :</p>
+            <ul data-lang="fr">
+                <li>Données publiques issues de sources institutionnelles officielles (Assemblée nationale, Sénat, Légifrance, data.gouv.fr, Eurostat, Banque mondiale, etc.)</li>
+                <li>Textes juridiques et constitutionnels (DDHC, Constitution, traités internationaux)</li>
+                <li>Données statistiques (budget, emploi, démographie, écologie)</li>
+                <li>Fiches descriptives sur les institutions et les élus</li>
+                <li>Parcours pédagogiques avec quiz d'évaluation</li>
+                <li>Un glossaire de termes civiques et politiques</li>
+            </ul>
+            <p data-lang="fr">L'application ne contient aucun contenu éditorial, opinion, prise de position politique, ni contenu pouvant être considéré comme polémique ou offensant.</p>
+            <h2 data-lang="en">Content Nature</h2>
+            <p data-lang="en">Article 15 is an <strong>educational and informational</strong> application. Its content exclusively consists of:</p>
+            <ul data-lang="en">
+                <li>Public data from official institutional sources (National Assembly, Senate, Légifrance, data.gouv.fr, Eurostat, World Bank, etc.)</li>
+                <li>Legal and constitutional texts (Declaration of the Rights of Man, Constitution, international treaties)</li>
+                <li>Statistical data (budget, employment, demographics, ecology)</li>
+                <li>Descriptive profiles of institutions and elected officials</li>
+                <li>Educational paths with assessment quizzes</li>
+                <li>A glossary of civic and political terms</li>
+            </ul>
+            <p data-lang="en">The application contains no editorial content, opinions, political stances, or content that could be considered controversial or offensive.</p>
+        </div>
+
+        <!-- Utilisation par les mineurs / Use by minors -->
+        <div class="card">
+            <h2 data-lang="fr">Utilisation par les mineurs</h2>
+            <p data-lang="fr">L'application est conçue pour être utilisée dans un cadre scolaire, notamment en cours d'Enseignement Moral et Civique (EMC), du collège au supérieur. Elle convient à tous les âges car :</p>
+            <ul data-lang="fr">
+                <li>Aucune inscription ni compte utilisateur n'est requis</li>
+                <li>Aucune donnée personnelle n'est collectée</li>
+                <li>Aucune interaction entre utilisateurs n'est possible</li>
+                <li>Aucun achat intégré n'est proposé</li>
+                <li>Aucune publicité n'est affichée</li>
+                <li>Aucun lien vers des réseaux sociaux n'est intégré</li>
+            </ul>
+            <p data-lang="fr">L'application est conforme aux exigences de protection des mineurs du RGPD (article 8) et du COPPA américain.</p>
+            <h2 data-lang="en">Use by Minors</h2>
+            <p data-lang="en">The application is designed for use in educational settings, particularly in Civic and Moral Education (EMC) classes, from middle school to higher education. It is suitable for all ages because:</p>
+            <ul data-lang="en">
+                <li>No registration or user account is required</li>
+                <li>No personal data is collected</li>
+                <li>No interaction between users is possible</li>
+                <li>No in-app purchases are offered</li>
+                <li>No advertisements are displayed</li>
+                <li>No links to social networks are integrated</li>
+            </ul>
+            <p data-lang="en">The application complies with the minor protection requirements of the GDPR (Article 8) and the US COPPA.</p>
+        </div>
+
+        <!-- CLUF / EULA -->
+        <div class="card">
+            <h2 data-lang="fr">Contrat de Licence Utilisateur Final (CLUF)</h2>
+            <p data-lang="fr">En téléchargeant et en utilisant Article 15, vous acceptez les conditions suivantes :</p>
+            <h2 data-lang="en">End User License Agreement (EULA)</h2>
+            <p data-lang="en">By downloading and using Article 15, you agree to the following terms:</p>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">1</span>
+                <p><strong>Licence d'utilisation.</strong> L'éditeur vous accorde une licence personnelle, non exclusive, non transférable et révocable pour utiliser l'application Article 15 sur tout appareil Apple que vous possédez ou contrôlez, conformément aux règles d'utilisation de l'App Store.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">1</span>
+                <p><strong>License grant.</strong> The publisher grants you a personal, non-exclusive, non-transferable, revocable license to use the Article 15 application on any Apple device that you own or control, in accordance with the App Store usage rules.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">2</span>
+                <p><strong>Restrictions.</strong> Vous ne pouvez pas copier, modifier, distribuer, vendre, louer, sous-licencier, décompiler ou désassembler l'application, en tout ou en partie, sauf dans les cas autorisés par la loi applicable.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">2</span>
+                <p><strong>Restrictions.</strong> You may not copy, modify, distribute, sell, rent, sublicense, decompile, or disassemble the application, in whole or in part, except as permitted by applicable law.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">3</span>
+                <p><strong>Propriété intellectuelle.</strong> L'application et son code source sont la propriété de l'éditeur. Les données affichées proviennent de sources publiques ouvertes et restent la propriété de leurs éditeurs respectifs.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">3</span>
+                <p><strong>Intellectual property.</strong> The application and its source code are the property of the publisher. Displayed data comes from open public sources and remains the property of their respective publishers.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">4</span>
+                <p><strong>Absence de garantie.</strong> L'application est fournie « en l'état ». L'éditeur ne garantit pas que l'application sera exempte d'erreurs, ininterrompue ou que les données affichées seront exactes ou complètes.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">4</span>
+                <p><strong>No warranty.</strong> The application is provided "as is." The publisher does not warrant that the application will be error-free, uninterrupted, or that the displayed data will be accurate or complete.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">5</span>
+                <p><strong>Limitation de responsabilité.</strong> L'éditeur ne pourra en aucun cas être tenu responsable des dommages directs, indirects, accessoires ou consécutifs découlant de l'utilisation ou de l'impossibilité d'utiliser l'application.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">5</span>
+                <p><strong>Limitation of liability.</strong> The publisher shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use of or inability to use the application.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">6</span>
+                <p><strong>Résiliation.</strong> Cette licence est effective jusqu'à sa résiliation. Vos droits prendront automatiquement fin si vous ne respectez pas les présentes conditions. Vous pouvez résilier cette licence à tout moment en supprimant l'application de vos appareils.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">6</span>
+                <p><strong>Termination.</strong> This license is effective until terminated. Your rights will terminate automatically if you fail to comply with these terms. You may terminate this license at any time by deleting the application from your devices.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">7</span>
+                <p><strong>Droit applicable.</strong> Ce contrat est régi par le droit français. Tout litige sera soumis à la compétence exclusive des juridictions françaises.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">7</span>
+                <p><strong>Governing law.</strong> This agreement is governed by French law. Any dispute shall be subject to the exclusive jurisdiction of the French courts.</p>
+            </div>
+
+            <div class="article-row" data-lang="fr">
+                <span class="num">8</span>
+                <p><strong>Apple en tant que tiers bénéficiaire.</strong> Conformément aux conditions de l'App Store, Apple et ses filiales sont des tiers bénéficiaires de ce contrat. À votre acceptation, Apple a le droit de faire appliquer ce contrat en tant que tiers bénéficiaire.</p>
+            </div>
+            <div class="article-row" data-lang="en">
+                <span class="num">8</span>
+                <p><strong>Apple as third-party beneficiary.</strong> In accordance with App Store terms, Apple and its subsidiaries are third-party beneficiaries of this agreement. Upon your acceptance, Apple has the right to enforce this agreement as a third-party beneficiary.</p>
+            </div>
+        </div>
+
+        <!-- Contrôle parental / Parental controls -->
+        <div class="card">
+            <h2 data-lang="fr">Contrôle parental</h2>
+            <p data-lang="fr">Bien qu'aucune restriction d'âge ne soit nécessaire pour utiliser Article 15, les parents et tuteurs peuvent utiliser les fonctionnalités de contrôle parental intégrées à iOS (Temps d'écran) pour gérer l'accès de leurs enfants à l'application et à l'appareil.</p>
+            <p data-lang="fr">Pour configurer le contrôle parental : Réglages > Temps d'écran > Restrictions de contenu et de confidentialité.</p>
+            <h2 data-lang="en">Parental Controls</h2>
+            <p data-lang="en">Although no age restriction is required to use Article 15, parents and guardians can use the parental control features built into iOS (Screen Time) to manage their children's access to the application and device.</p>
+            <p data-lang="en">To configure parental controls: Settings > Screen Time > Content & Privacy Restrictions.</p>
+        </div>
+
+        <!-- Liens / Related links -->
+        <div class="card">
+            <h2 data-lang="fr">Documents connexes</h2>
+            <p data-lang="fr">
+                <a href="cgu.html">Conditions générales d'utilisation</a><br>
+                <a href="privacy.html">Politique de confidentialité</a><br>
+                <a href="accessibility.html">Déclaration d'accessibilité</a>
+            </p>
+            <h2 data-lang="en">Related Documents</h2>
+            <p data-lang="en">
+                <a href="cgu.html">Terms of Use</a><br>
+                <a href="privacy.html">Privacy Policy</a><br>
+                <a href="accessibility.html">Accessibility Statement</a>
+            </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="card">
+            <h2 data-lang="fr">Contact</h2>
+            <p data-lang="fr">Pour toute question relative à la classification d'âge ou au contrat de licence : <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <h2 data-lang="en">Contact</h2>
+            <p data-lang="en">For any questions regarding the age rating or the license agreement: <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <span data-lang="fr">Article 15 — Application citoyenne indépendante</span>
+        <span data-lang="en">Article 15 — Independent civic application</span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-lang]').forEach(function(el) {
+                if (el.dataset.lang === lang) {
+                    if (el.classList.contains('article-row')) {
+                        el.style.display = 'flex';
+                    } else if (el.classList.contains('rating-grid')) {
+                        el.style.display = 'grid';
+                    } else if (el.tagName === 'SPAN' || el.tagName === 'A') {
+                        el.style.display = 'inline';
+                    } else {
+                        el.style.display = 'block';
+                    }
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('legal-lang', lang);
+        }
+        var saved = localStorage.getItem('legal-lang');
+        if (saved) setLang(saved);
+    </script>
+</body>
+</html>

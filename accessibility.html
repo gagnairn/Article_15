@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 15 — Déclaration d'accessibilité</title>
+    <meta name="description" content="Déclaration d'accessibilité de l'application Article 15. Prise en charge de VoiceOver, Dynamic Type, et des réglages d'accessibilité Apple.">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta property="og:title" content="Article 15 — Déclaration d'accessibilité">
+    <meta property="og:description" content="Déclaration d'accessibilité de l'application Article 15. Prise en charge de VoiceOver, Dynamic Type, et des réglages d'accessibilité Apple.">
+    <meta property="og:image" content="icon.png">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bleu: #000091;
+            --rouge: #E1000F;
+            --blanc: #FFFFFF;
+            --gris-clair: #F6F6F6;
+            --gris-texte: #3A3A3A;
+            --bleu-clair: #E8EDFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--gris-texte);
+            line-height: 1.7;
+            background: var(--gris-clair);
+        }
+
+        header {
+            background: var(--bleu);
+            color: var(--blanc);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: "Didot", "Georgia", serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        header nav a {
+            color: var(--blanc);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        header nav a:hover {
+            opacity: 1;
+        }
+
+        .lang-switch {
+            display: flex;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: var(--blanc);
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .lang-switch button.active {
+            background: rgba(255,255,255,0.25);
+            opacity: 1;
+        }
+
+        .tricolore {
+            display: flex;
+            height: 4px;
+        }
+
+        .tricolore span { flex: 1; }
+        .tricolore .bleu { background: #0055A4; }
+        .tricolore .blanc { background: #FFFFFF; }
+        .tricolore .rouge { background: #EF4135; }
+
+        main {
+            max-width: 720px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--bleu);
+            margin-bottom: 0.3rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--blanc);
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: var(--bleu);
+            margin-bottom: 0.6rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card a {
+            color: var(--bleu);
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.5rem 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .card ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .feature-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-row .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--bleu-clair);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .feature-row .content {
+            flex: 1;
+        }
+
+        .feature-row .content strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .feature-row .content span {
+            font-size: 0.88rem;
+            color: #666;
+        }
+
+        .badge-conformite {
+            display: inline-block;
+            background: #D5F5E3;
+            color: #1E8449;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+        }
+
+        .badge-na {
+            display: inline-block;
+            background: #EAECEE;
+            color: #666;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        [data-lang] { display: none; }
+        [data-lang="fr"] { display: block; }
+        a[data-lang="fr"] { display: inline; }
+        .feature-row[data-lang] { display: none; }
+        .feature-row[data-lang="fr"] { display: flex; }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            header nav {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                margin: 1.5rem auto;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Article 15</a>
+        <nav>
+            <a href="index.html" data-lang="fr">Accueil</a>
+            <a href="index.html" data-lang="en">Home</a>
+            <a href="index.html#enseignants" data-lang="fr">Enseignants</a>
+            <a href="index.html#enseignants" data-lang="en">Teachers</a>
+            <a href="index.html#parcours" data-lang="fr">Parcours</a>
+            <a href="index.html#parcours" data-lang="en">Paths</a>
+            <a href="index.html#fonctionnalites" data-lang="fr">Contenu</a>
+            <a href="index.html#fonctionnalites" data-lang="en">Content</a>
+            <a href="index.html#programme" data-lang="fr">Programmes</a>
+            <a href="index.html#programme" data-lang="en">Programs</a>
+            <a href="index.html#contact" data-lang="fr">Contact</a>
+            <a href="index.html#contact" data-lang="en">Contact</a>
+            <a href="privacy.html" data-lang="fr">Confidentialité</a>
+            <a href="privacy.html" data-lang="en">Privacy</a>
+            <a href="cgu.html" data-lang="fr">CGU</a>
+            <a href="cgu.html" data-lang="en">Terms</a>
+            <a href="accessibility.html" data-lang="fr">Accessibilité</a>
+            <a href="accessibility.html" data-lang="en">Accessibility</a>
+            <a href="age-rating.html" data-lang="fr">Classification d'âge</a>
+            <a href="age-rating.html" data-lang="en">Age rating</a>
+        </nav>
+    </header>
+    <div style="background:var(--bleu);text-align:center;padding:0.4rem 0;">
+        <div class="lang-switch" style="display:inline-flex;">
+            <button id="lang-fr" class="active" onclick="setLang('fr')">FR</button>
+            <button id="lang-en" onclick="setLang('en')">EN</button>
+        </div>
+    </div>
+    <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+
+    <main>
+        <!-- FR -->
+        <h1 data-lang="fr">Déclaration d'accessibilité</h1>
+        <p class="subtitle" data-lang="fr">Dernière mise à jour : 23 avril 2026</p>
+        <!-- EN -->
+        <h1 data-lang="en">Accessibility Statement</h1>
+        <p class="subtitle" data-lang="en">Last updated: April 23, 2026</p>
+
+        <!-- Engagement / Commitment -->
+        <div class="card">
+            <h2 data-lang="fr">Engagement</h2>
+            <p data-lang="fr">Article 15 s'engage à rendre son application accessible au plus grand nombre, y compris les personnes en situation de handicap. L'accessibilité est intégrée dès la conception et fait l'objet d'une attention continue à chaque mise à jour.</p>
+            <h2 data-lang="en">Commitment</h2>
+            <p data-lang="en">Article 15 is committed to making its application accessible to as many people as possible, including people with disabilities. Accessibility is built in from the design stage and receives continuous attention with every update.</p>
+        </div>
+
+        <!-- Fonctionnalités Apple App Store / Apple App Store Accessibility Features -->
+        <div class="card">
+            <h2 data-lang="fr">Fonctionnalités d'accessibilité Apple</h2>
+            <p data-lang="fr">Conformément aux critères d'accessibilité de l'App Store, voici le détail de la prise en charge de chacune des 9 fonctionnalités Apple par Article 15 :</p>
+            <h2 data-lang="en">Apple Accessibility Features</h2>
+            <p data-lang="en">In accordance with the App Store accessibility criteria, here is the support status for each of the 9 Apple accessibility features in Article 15:</p>
+        </div>
+
+        <!-- 1. VoiceOver -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F50A;</div>
+                <div class="content">
+                    <strong>VoiceOver</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F50A;</div>
+                <div class="content">
+                    <strong>VoiceOver</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">Les utilisateurs peuvent naviguer dans l'intégralité de l'application et l'explorer à l'aide de gestes, du clavier, du braille et de sorties vocales. Plus de 640 labels d'accessibilité sont définis. Tous les éléments interactifs (boutons, liens, pickers, onglets) disposent de labels, hints et valeurs accessibles. Les éléments décoratifs (icônes, séparateurs) sont masqués pour ne pas encombrer la navigation. Les éléments liés sont regroupés logiquement (<code>accessibilityElement(children: .combine)</code>). Les graphiques statistiques sont accompagnés de descripteurs Audio Graphs (<code>AXChartDescriptorRepresentable</code>) permettant à VoiceOver de les sonifier.</p>
+            <p data-lang="en">Users can navigate and explore the entire application using gestures, keyboard, braille, and speech output. Over 640 accessibility labels are defined. All interactive elements (buttons, links, pickers, tabs) have accessibility labels, hints, and values. Decorative elements (icons, dividers) are hidden to streamline navigation. Related elements are logically grouped (<code>accessibilityElement(children: .combine)</code>). Statistical charts include Audio Graph descriptors (<code>AXChartDescriptorRepresentable</code>) allowing VoiceOver to sonify them.</p>
+        </div>
+
+        <!-- 2. Contrôle vocal / Voice Control -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F3A4;</div>
+                <div class="content">
+                    <strong>Contrôle vocal</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F3A4;</div>
+                <div class="content">
+                    <strong>Voice Control</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">Les utilisateurs peuvent naviguer et interagir avec l'application à l'aide de leur voix pour toucher, faire glisser et saisir du texte. L'application utilise les composants natifs SwiftUI (Button, NavigationLink, Picker, TextField, TabView) qui sont automatiquement compatibles avec le Contrôle vocal d'iOS. Tous les éléments interactifs portent des labels d'accessibilité descriptifs en français, permettant de les activer par commande vocale.</p>
+            <p data-lang="en">Users can navigate and interact with the application using their voice to tap, swipe, and enter text. The application uses native SwiftUI components (Button, NavigationLink, Picker, TextField, TabView) that are automatically compatible with iOS Voice Control. All interactive elements have descriptive French accessibility labels, allowing activation by voice command.</p>
+        </div>
+
+        <!-- 3. Police plus grande / Larger Text -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F524;</div>
+                <div class="content">
+                    <strong>Police plus grande</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F524;</div>
+                <div class="content">
+                    <strong>Larger Text</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">La taille du texte s'adapte au réglage choisi dans les paramètres iOS, y compris les tailles d'accessibilité les plus grandes (de xSmall à AX5, soit bien au-delà de 200 %). L'application utilise exclusivement le système Dynamic Type d'Apple via des polices dynamiques (<code>Font.system(.body, design: .rounded)</code>). Les mises en page se réorganisent automatiquement pour rester lisibles quelle que soit la taille choisie. Le réglage « Texte en gras » d'iOS est également respecté.</p>
+            <p data-lang="en">Text size adapts to your iOS text size setting, including the largest accessibility sizes (from xSmall to AX5, well beyond 200%). The application exclusively uses Apple's Dynamic Type system via dynamic fonts (<code>Font.system(.body, design: .rounded)</code>). Layouts automatically reorganize to remain readable at any chosen size. The iOS "Bold Text" setting is also respected.</p>
+        </div>
+
+        <!-- 4. Interface sombre / Dark Mode -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F319;</div>
+                <div class="content">
+                    <strong>Interface sombre</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F319;</div>
+                <div class="content">
+                    <strong>Dark Mode</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">L'application applique un thème de couleurs sombre aux écrans, menus et commandes lorsque le mode sombre d'iOS est activé, réduisant la fatigue oculaire. L'utilisateur peut également choisir manuellement le thème (système, clair ou sombre) depuis l'écran « À propos > Accessibilité » de l'application. Les contrastes sont optimisés dans les deux modes.</p>
+            <p data-lang="en">The application applies a dark color theme to screens, menus, and controls when iOS Dark Mode is enabled, reducing eye strain. Users can also manually choose the theme (system, light, or dark) from the "About > Accessibility" screen in the application. Contrasts are optimized in both modes.</p>
+        </div>
+
+        <!-- 5. Différencier sans couleur seule / Differentiate Without Color -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F534;</div>
+                <div class="content">
+                    <strong>Différencier sans couleur seule</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F534;</div>
+                <div class="content">
+                    <strong>Differentiate Without Color</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">L'application utilise des formes, des icônes et du texte en complément des couleurs pour transmettre les informations. Aucune donnée n'est véhiculée uniquement par la couleur. Les badges de statut, les indicateurs de tendance et les catégories sont toujours accompagnés d'un label textuel ou d'une icône distinctive.</p>
+            <p data-lang="en">The application uses shapes, icons, and text in addition to colors to convey information. No data is communicated by color alone. Status badges, trend indicators, and categories are always accompanied by a text label or distinctive icon.</p>
+        </div>
+
+        <!-- 6. Contraste suffisant / Sufficient Contrast -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x25D1;</div>
+                <div class="content">
+                    <strong>Contraste suffisant</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x25D1;</div>
+                <div class="content">
+                    <strong>Sufficient Contrast</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">Les contrastes entre le texte, l'iconographie et l'arrière-plan respectent les recommandations WCAG 2.1 niveau AA (ratio minimum de 4,5:1 pour le texte normal, 3:1 pour le texte large). Les effets de flou et de transparence sont remplacés par des fonds opaques lorsque le réglage « Réduire la transparence » est activé, améliorant encore la lisibilité.</p>
+            <p data-lang="en">Contrasts between text, icons, and backgrounds meet WCAG 2.1 Level AA guidelines (minimum ratio of 4.5:1 for normal text, 3:1 for large text). Blur and transparency effects are replaced with opaque backgrounds when the "Reduce Transparency" setting is enabled, further improving readability.</p>
+        </div>
+
+        <!-- 7. Animations réduites / Reduce Motion -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F3AC;</div>
+                <div class="content">
+                    <strong>Animations réduites</strong>
+                    <div class="badge-conformite">Pris en charge</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F3AC;</div>
+                <div class="content">
+                    <strong>Reduce Motion</strong>
+                    <div class="badge-conformite">Supported</div>
+                </div>
+            </div>
+            <p data-lang="fr">Lorsque le réglage « Réduire les animations » est activé, toutes les animations et transitions sont supprimées ou remplacées par des transitions instantanées. L'application utilise une fonction dédiée (<code>withMotionSafeAnimation</code>) qui vérifie systématiquement ce réglage avant d'appliquer toute animation. Les effets de shimmer (chargement) et les animations de l'onboarding respectent également ce réglage.</p>
+            <p data-lang="en">When the "Reduce Motion" setting is enabled, all animations and transitions are removed or replaced with instant transitions. The application uses a dedicated function (<code>withMotionSafeAnimation</code>) that systematically checks this setting before applying any animation. Shimmer effects (loading) and onboarding animations also respect this setting.</p>
+        </div>
+
+        <!-- 8. Sous-titres / Closed Captions -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F4AC;</div>
+                <div class="content">
+                    <strong>Sous-titres</strong>
+                    <div class="badge-na">Non applicable</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F4AC;</div>
+                <div class="content">
+                    <strong>Closed Captions</strong>
+                    <div class="badge-na">Not applicable</div>
+                </div>
+            </div>
+            <p data-lang="fr">Article 15 ne contient aucun contenu vidéo ni audio. L'intégralité de l'information est présentée sous forme de texte, de données statistiques et de graphiques. Cette fonctionnalité n'a donc pas lieu de s'appliquer.</p>
+            <p data-lang="en">Article 15 contains no video or audio content. All information is presented as text, statistical data, and charts. This feature is therefore not applicable.</p>
+        </div>
+
+        <!-- 9. Descriptions audio / Audio Descriptions -->
+        <div class="card">
+            <div class="feature-row" data-lang="fr">
+                <div class="icon" aria-hidden="true">&#x1F4E2;</div>
+                <div class="content">
+                    <strong>Descriptions audio</strong>
+                    <div class="badge-na">Non applicable</div>
+                </div>
+            </div>
+            <div class="feature-row" data-lang="en">
+                <div class="icon" aria-hidden="true">&#x1F4E2;</div>
+                <div class="content">
+                    <strong>Audio Descriptions</strong>
+                    <div class="badge-na">Not applicable</div>
+                </div>
+            </div>
+            <p data-lang="fr">Article 15 ne contient aucun contenu vidéo. Aucune description audio n'est donc nécessaire. En revanche, les graphiques statistiques sont accompagnés de descripteurs Audio Graphs accessibles, permettant aux utilisateurs de VoiceOver d'explorer les données par le son.</p>
+            <p data-lang="en">Article 15 contains no video content. Audio descriptions are therefore not needed. However, statistical charts include accessible Audio Graph descriptors, allowing VoiceOver users to explore data through sound.</p>
+        </div>
+
+        <!-- Fonctionnalités supplémentaires / Additional features -->
+        <div class="card">
+            <h2 data-lang="fr">Fonctionnalités d'accessibilité supplémentaires</h2>
+            <h2 data-lang="en">Additional Accessibility Features</h2>
+            <p data-lang="fr">Au-delà des 9 critères Apple, Article 15 prend également en charge :</p>
+            <p data-lang="en">Beyond the 9 Apple criteria, Article 15 also supports:</p>
+            <ul data-lang="fr">
+                <li><strong>Audio Graphs</strong> — Les graphiques statistiques (pauvreté, emploi, retraites, minima sociaux, etc.) implémentent <code>AXChartDescriptorRepresentable</code> pour permettre la sonification des données via VoiceOver</li>
+                <li><strong>Retour haptique</strong> — Des retours tactiles pour les interactions clés (changement d'onglet, validation, chargement), offrant un canal de confirmation supplémentaire</li>
+                <li><strong>Réduire la transparence</strong> — Les effets de flou sont remplacés par des fonds opaques lorsque ce réglage iOS est activé</li>
+                <li><strong>Mise en page adaptative</strong> — L'interface s'adapte aux différentes tailles d'écran (iPhone et iPad) avec une grille à deux colonnes sur iPad</li>
+                <li><strong>Zones tactiles</strong> — Toutes les cibles interactives respectent le minimum de 44×44 points recommandé par Apple</li>
+            </ul>
+            <ul data-lang="en">
+                <li><strong>Audio Graphs</strong> — Statistical charts (poverty, employment, retirement, social benefits, etc.) implement <code>AXChartDescriptorRepresentable</code> to enable data sonification via VoiceOver</li>
+                <li><strong>Haptic feedback</strong> — Tactile feedback for key interactions (tab changes, confirmations, loading), providing an additional confirmation channel</li>
+                <li><strong>Reduce Transparency</strong> — Blur effects are replaced with opaque backgrounds when this iOS setting is enabled</li>
+                <li><strong>Adaptive layout</strong> — The interface adapts to different screen sizes (iPhone and iPad) with a two-column grid on iPad</li>
+                <li><strong>Touch targets</strong> — All interactive targets meet the Apple-recommended minimum of 44×44 points</li>
+            </ul>
+        </div>
+
+        <!-- Réglages dans l'app / In-app settings -->
+        <div class="card">
+            <h2 data-lang="fr">Réglages dans l'application</h2>
+            <p data-lang="fr">L'application propose un écran dédié à l'accessibilité dans la section « À propos », qui permet de :</p>
+            <ul data-lang="fr">
+                <li>Choisir le thème de l'application (système, clair, sombre)</li>
+                <li>Vérifier les fonctionnalités d'accessibilité prises en charge</li>
+                <li>Ouvrir directement les réglages d'accessibilité iOS</li>
+            </ul>
+            <h2 data-lang="en">In-app settings</h2>
+            <p data-lang="en">The application includes a dedicated accessibility screen in the "About" section, which allows you to:</p>
+            <ul data-lang="en">
+                <li>Choose the app's theme (system, light, dark)</li>
+                <li>Review supported accessibility features</li>
+                <li>Open iOS accessibility settings directly</li>
+            </ul>
+        </div>
+
+        <!-- Conformité / Compliance -->
+        <div class="card">
+            <h2 data-lang="fr">Conformité</h2>
+            <p data-lang="fr">Article 15 vise une conformité avec les critères d'accessibilité WCAG 2.1 niveau AA et les directives d'accessibilité Apple (Human Interface Guidelines). Sur les 9 fonctionnalités d'accessibilité Apple :</p>
+            <ul data-lang="fr">
+                <li><strong>7 sur 9 sont prises en charge</strong> : VoiceOver, Contrôle vocal, Police plus grande, Interface sombre, Différencier sans couleur seule, Contraste suffisant, Animations réduites</li>
+                <li><strong>2 sur 9 ne sont pas applicables</strong> : Sous-titres et Descriptions audio (l'application ne contient aucun contenu vidéo ou audio)</li>
+            </ul>
+            <p data-lang="fr">L'éditeur s'engage à corriger tout problème d'accessibilité signalé dans les meilleurs délais.</p>
+            <h2 data-lang="en">Compliance</h2>
+            <p data-lang="en">Article 15 aims for compliance with WCAG 2.1 Level AA accessibility criteria and Apple's accessibility guidelines (Human Interface Guidelines). Of the 9 Apple accessibility features:</p>
+            <ul data-lang="en">
+                <li><strong>7 out of 9 are supported</strong>: VoiceOver, Voice Control, Larger Text, Dark Mode, Differentiate Without Color, Sufficient Contrast, Reduce Motion</li>
+                <li><strong>2 out of 9 are not applicable</strong>: Closed Captions and Audio Descriptions (the application contains no video or audio content)</li>
+            </ul>
+            <p data-lang="en">The publisher commits to fixing any reported accessibility issues as promptly as possible.</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="card">
+            <h2 data-lang="fr">Signaler un problème d'accessibilité</h2>
+            <p data-lang="fr">Si vous rencontrez un obstacle d'accessibilité dans l'application, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <p data-lang="fr">Merci de préciser le modèle d'appareil, la version d'iOS, la fonctionnalité d'accessibilité utilisée et la difficulté rencontrée. Nous nous engageons à répondre dans un délai de 15 jours.</p>
+            <h2 data-lang="en">Report an accessibility issue</h2>
+            <p data-lang="en">If you encounter an accessibility barrier in the application, you can contact us at: <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <p data-lang="en">Please include your device model, iOS version, the accessibility feature used, and the difficulty encountered. We commit to responding within 15 days.</p>
+        </div>
+    </main>
+
+    <footer>
+        <span data-lang="fr">Article 15 — Application citoyenne indépendante</span>
+        <span data-lang="en">Article 15 — Independent civic application</span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-lang]').forEach(function(el) {
+                if (el.dataset.lang === lang) {
+                    el.style.display = el.classList.contains('feature-row') ? 'flex' : '';
+                    el.style.display = el.style.display || (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline' : 'block');
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            localStorage.setItem('legal-lang', lang);
+        }
+        var saved = localStorage.getItem('legal-lang');
+        if (saved) setLang(saved);
+    </script>
+</body>
+</html>
