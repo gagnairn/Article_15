@@ -21,7 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var logo = document.createElement('a');
     logo.href = 'index.html';
     logo.className = 'logo';
-    logo.textContent = 'Article 15';
+    var logoImg = document.createElement('img');
+    logoImg.src = 'images/icon.png';
+    logoImg.alt = '';
+    logoImg.width = 34;
+    logoImg.height = 34;
+    logo.appendChild(logoImg);
+    logo.appendChild(document.createTextNode('Article 15'));
 
     var menuToggle = document.createElement('button');
     menuToggle.className = 'menu-toggle';

@@ -64,6 +64,13 @@ header .logo {
     letter-spacing: 0.5px;
     text-decoration: none;
     color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+header .logo img {
+    border-radius: 8px;
 }
 
 header nav {
