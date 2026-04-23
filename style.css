@@ -612,15 +612,24 @@ section .section-sub {
     margin-bottom: 2rem;
 }
 
-.chiffre-nombre {
-    font-family: "Didot", "Georgia", serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--bleu);
-    margin-bottom: 0.3rem;
+.chiffre {
+    background: var(--blanc);
+    border-radius: 14px;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--bleu);
 }
 
-.chiffre p { font-size: 1.05rem; color: #666; }
+.chiffre-nombre {
+    font-family: "Didot", "Georgia", serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--bleu);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.chiffre p { font-size: 1rem; color: #555; font-weight: 500; }
 
 /* ===== Index: Contact ===== */
 
