@@ -359,17 +359,6 @@ footer a:hover {
     text-align: center;
 }
 
-.hero .badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 20px;
-    padding: 0.4rem 1.2rem;
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.5px;
-}
-
 .hero-icon {
     border-radius: 22px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -632,33 +621,6 @@ section .section-sub {
 
 .chiffre p { font-size: 1.05rem; color: #666; }
 
-/* ===== Index: CTA Final ===== */
-
-.cta-final {
-    background: var(--bleu-clair);
-    color: var(--gris-texte);
-    text-align: center;
-}
-
-.cta-final h2 { color: var(--bleu); margin-bottom: 1rem; }
-
-.cta-final p {
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    color: #555;
-}
-
-.cta-final .btn-primary {
-    background: var(--bleu);
-    color: var(--blanc);
-}
-
-.cta-final .btn-secondary {
-    background: transparent;
-    color: var(--bleu);
-    border: 2px solid var(--bleu);
-}
-
 /* ===== Index: Contact ===== */
 
 .contact-section { text-align: center; }
@@ -683,7 +645,6 @@ span[data-lang="fr"] { display: inline !important; }
 .programme-grid[data-lang="fr"],
 .garanties[data-lang="fr"] { display: grid !important; }
 .cta-group[data-lang="fr"] { display: flex !important; }
-.badge[data-lang="fr"] { display: inline-block !important; }
 .quote[data-lang="fr"] { display: block !important; }
 
 /* When lang=en on html: hide FR, show EN */
@@ -703,7 +664,6 @@ span[data-lang="fr"] { display: inline !important; }
 :root[lang="en"] .programme-grid[data-lang="en"],
 :root[lang="en"] .garanties[data-lang="en"] { display: grid !important; }
 :root[lang="en"] .cta-group[data-lang="en"] { display: flex !important; }
-:root[lang="en"] .badge[data-lang="en"] { display: inline-block !important; }
 :root[lang="en"] .quote[data-lang="en"] { display: block !important; }
 
 /* ===== Hamburger Menu ===== */
@@ -790,7 +750,6 @@ span[data-lang="fr"] { display: inline !important; }
     .hero { padding: 2.5rem 1rem 2rem; }
     .hero h1 { font-size: 1.6rem; }
     .hero .subtitle { font-size: 0.95rem; }
-    .hero .badge { font-size: 0.78rem; padding: 0.3rem 1rem; }
     .hero .quote { font-size: 0.88rem; }
 
     section { padding: 2rem 1rem; }
