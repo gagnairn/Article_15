@@ -5,610 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article 15 — L'app citoyenne pour comprendre la démocratie</title>
     <meta name="description" content="Application iOS gratuite et indépendante pour explorer les institutions, suivre l'activité parlementaire et comprendre la démocratie française. Idéale pour l'EMC du collège au supérieur.">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <meta property="og:title" content="Article 15 — L'app citoyenne pour comprendre la démocratie">
     <meta property="og:description" content="Application iOS gratuite et indépendante pour explorer les institutions, suivre l'activité parlementaire et comprendre la démocratie française.">
-    <meta property="og:image" content="icon.png">
+    <meta property="og:image" content="https://gagnairn.github.io/Article_15/images/og-image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Article 15 — L'app citoyenne pour comprendre la démocratie">
     <meta name="twitter:description" content="Application iOS gratuite et indépendante pour explorer les institutions et comprendre la démocratie française.">
-    <meta name="twitter:image" content="icon.png">
-    <style>
-        :root {
-            --bleu: #000091;
-            --rouge: #E1000F;
-            --blanc: #FFFFFF;
-            --gris-clair: #F6F6F6;
-            --gris-texte: #3A3A3A;
-            --bleu-clair: #E8EDFF;
-            --vert: #268541;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: var(--gris-texte);
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            background: var(--bleu);
-            color: var(--blanc);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        header .logo {
-            font-family: "Didot", "Georgia", serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        header nav a {
-            color: var(--blanc);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.95rem;
-            opacity: 0.85;
-            transition: opacity 0.2s;
-        }
-
-        header nav a:hover {
-            opacity: 1;
-        }
-
-        /* Tricolore */
-        .tricolore {
-            display: flex;
-            height: 3px;
-            width: 60px;
-            margin: 0 auto 1.5rem;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .tricolore span {
-            flex: 1;
-        }
-
-        .tricolore .bleu { background: #0055A4; }
-        .tricolore .blanc { background: #FFFFFF; }
-        .tricolore .rouge { background: #EF4135; }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, var(--bleu) 0%, #1a1a8a 50%, #0d0d4a 100%);
-            color: var(--blanc);
-            padding: 5rem 2rem 4rem;
-            text-align: center;
-        }
-
-        .hero .badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 20px;
-            padding: 0.4rem 1.2rem;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        .hero h1 {
-            font-family: "Didot", "Georgia", serif;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .hero .quote {
-            font-style: italic;
-            opacity: 0.7;
-            font-size: 0.95rem;
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            border-left: 3px solid rgba(255,255,255,0.3);
-            padding-left: 1rem;
-            text-align: left;
-        }
-
-        .hero .quote cite {
-            display: block;
-            margin-top: 0.5rem;
-            font-style: normal;
-            font-size: 0.85rem;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary {
-            background: var(--blanc);
-            color: var(--bleu);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--blanc);
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-
-        /* Section commune */
-        section {
-            padding: 4rem 2rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-family: "Didot", "Georgia", serif;
-            font-size: 2rem;
-            color: var(--bleu);
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        section .section-sub {
-            text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
-            font-size: 1.05rem;
-        }
-
-        /* EMC Section */
-        .emc-section {
-            background: var(--bleu-clair);
-        }
-
-        .emc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .emc-card {
-            background: var(--blanc);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            transition: transform 0.2s;
-        }
-
-        .emc-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .emc-card .icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .emc-card h3 {
-            color: var(--bleu);
-            margin-bottom: 0.5rem;
-            font-size: 1.15rem;
-        }
-
-        .emc-card p {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        /* Features */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background: var(--blanc);
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-        }
-
-        .feature .icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .feature h3 {
-            font-size: 1.05rem;
-            color: var(--bleu);
-            margin-bottom: 0.4rem;
-        }
-
-        .feature p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .feature ul {
-            text-align: left;
-            font-size: 0.85rem;
-            color: #666;
-            list-style: none;
-            padding: 0;
-            margin-top: 0.5rem;
-        }
-
-        .feature ul li::before {
-            content: "- ";
-            color: var(--bleu);
-        }
-
-        /* Parcours */
-        .parcours-section {
-            background: var(--blanc);
-        }
-
-        .parcours-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .parcours-card {
-            background: var(--gris-clair);
-            border-radius: 12px;
-            padding: 1.8rem;
-            border-left: 4px solid var(--bleu);
-            transition: transform 0.2s;
-        }
-
-        .parcours-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .parcours-card .niveau-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.2rem 0.8rem;
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
-        }
-
-        .parcours-card .niveau-badge.debutant {
-            background: #D5F5E3;
-            color: #1E8449;
-        }
-
-        .parcours-card .niveau-badge.intermediaire {
-            background: #FEF9E7;
-            color: #B7950B;
-        }
-
-        .parcours-card .niveau-badge.avance {
-            background: #FADBD8;
-            color: #C0392B;
-        }
-
-        .parcours-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            color: var(--gris-texte);
-        }
-
-        .parcours-card .classe {
-            font-size: 0.85rem;
-            color: var(--bleu);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .parcours-card p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .parcours-card .quiz-badge {
-            display: inline-block;
-            margin-top: 0.6rem;
-            font-size: 0.8rem;
-            color: var(--vert);
-            font-weight: 600;
-        }
-
-        /* Programme */
-        .programme-section {
-            background: var(--gris-clair);
-        }
-
-        .programme-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .programme-card {
-            background: var(--blanc);
-            border-radius: 10px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--bleu);
-        }
-
-        .programme-card .niveau {
-            display: inline-block;
-            background: var(--bleu-clair);
-            color: var(--bleu);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.2rem 0.8rem;
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
-        }
-
-        .programme-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .programme-card p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .programme-card ul {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.5rem;
-            padding-left: 1.2rem;
-        }
-
-        .programme-card ul li {
-            margin-bottom: 0.2rem;
-        }
-
-        /* Garanties */
-        .garanties {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
-        }
-
-        .garantie .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .garantie h3 {
-            font-size: 1rem;
-            color: var(--bleu);
-            margin-bottom: 0.3rem;
-        }
-
-        .garantie p {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        /* Chiffres */
-        .chiffres {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .chiffre h3 {
-            font-family: "Didot", "Georgia", serif;
-            font-size: 2.5rem;
-            color: var(--bleu);
-            margin-bottom: 0.3rem;
-        }
-
-        .chiffre p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* CTA final */
-        .cta-final {
-            background: var(--bleu);
-            color: var(--blanc);
-            text-align: center;
-        }
-
-        .cta-final h2 {
-            color: var(--blanc);
-            margin-bottom: 1rem;
-        }
-
-        .cta-final p {
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Contact */
-        .contact-section {
-            text-align: center;
-        }
-
-        .contact-section a {
-            color: var(--bleu);
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: #aaa;
-            padding: 2rem;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        footer a {
-            color: #ccc;
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero .subtitle { font-size: 1.05rem; }
-            header { flex-direction: column; gap: 0.5rem; }
-            header nav a { margin-left: 1rem; font-size: 0.85rem; }
-            section { padding: 3rem 1.5rem; }
-            .chiffre h3 { font-size: 2rem; }
-        }
-    </style>
+    <meta name="twitter:image" content="https://gagnairn.github.io/Article_15/images/og-image.png">
+    <meta name="theme-color" content="#000091">
+    <meta property="og:url" content="https://gagnairn.github.io/Article_15/">
+    <link rel="canonical" href="https://gagnairn.github.io/Article_15/">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Article 15</a>
-    <nav>
-        <a href="index.html">Accueil</a>
-        <a href="#enseignants">Enseignants</a>
-        <a href="#parcours">Parcours</a>
-        <a href="#fonctionnalites">Contenu</a>
-        <a href="#programme">Programmes</a>
-        <a href="#contact">Contact</a>
-        <a href="privacy.html">Confidentialité</a>
-        <a href="cgu.html">CGU</a>
-        <a href="accessibility.html">Accessibilité</a>
-        <a href="age-rating.html">Classification d'âge</a>
-    </nav>
-</header>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+<header></header>
 
+<main id="main-content">
+
+<!-- ===== Hero ===== -->
 <section class="hero">
-    <div class="badge">Application iOS gratuite, sans pub, sans traceur</div>
-    <h1>La démocratie française<br>dans la poche de vos élèves</h1>
-    <p class="subtitle">
+    <div class="badge" data-lang="fr">Application iOS gratuite, sans pub, sans traceur</div>
+    <div class="badge" data-lang="en">Free iOS app, no ads, no trackers</div>
+
+    <h1 data-lang="fr">La démocratie française<br>dans la poche de vos élèves</h1>
+    <h1 data-lang="en">French democracy<br>in your students' pockets</h1>
+
+    <p class="subtitle" data-lang="fr">
         Article 15 rassemble les données publiques sur les institutions, les élus, la transparence et la vie démocratique.
         Un outil pédagogique complet pour l'EMC, du collège au supérieur.
     </p>
-    <div class="quote">
+    <p class="subtitle" data-lang="en">
+        Article 15 gathers public data on institutions, elected officials, transparency, and democratic life.
+        A comprehensive educational tool for civic education, from middle school to university.
+    </p>
+
+    <div class="quote" data-lang="fr">
         <p>&laquo; La société a le droit de demander compte à tout agent public de son administration. &raquo;</p>
         <cite>&mdash; Article 15, Déclaration des Droits de l'Homme et du Citoyen, 1789</cite>
     </div>
-    <div class="cta-group">
+    <div class="quote" data-lang="en">
+        <p>&ldquo;Society has the right to require of every public agent an account of his administration.&rdquo;</p>
+        <cite>&mdash; Article 15, Declaration of the Rights of Man and of the Citizen, 1789</cite>
+    </div>
+
+    <div class="cta-group" data-lang="fr">
         <a href="https://apps.apple.com/app/article-15" class="btn btn-primary">Télécharger sur l'App Store</a>
         <a href="#fonctionnalites" class="btn btn-secondary">Découvrir l'app</a>
     </div>
+    <div class="cta-group" data-lang="en">
+        <a href="https://apps.apple.com/app/article-15" class="btn btn-primary">Download on the App Store</a>
+        <a href="#fonctionnalites" class="btn btn-secondary">Discover the app</a>
+    </div>
 </section>
 
-<!-- Chiffres clés -->
+<!-- ===== Chiffres ===== -->
 <section>
     <div class="container">
-        <div class="chiffres">
-            <div class="chiffre">
-                <h3>5</h3>
-                <p>onglets thématiques</p>
-            </div>
-            <div class="chiffre">
-                <h3>6</h3>
-                <p>parcours éducatifs avec quiz</p>
-            </div>
-            <div class="chiffre">
-                <h3>100+</h3>
-                <p>institutions détaillées</p>
-            </div>
-            <div class="chiffre">
-                <h3>30+</h3>
-                <p>sources officielles</p>
-            </div>
+        <div class="chiffres" data-lang="fr">
+            <div class="chiffre"><p class="chiffre-nombre">5</p><p>onglets thématiques</p></div>
+            <div class="chiffre"><p class="chiffre-nombre">7</p><p>parcours éducatifs avec quiz</p></div>
+            <div class="chiffre"><p class="chiffre-nombre">140+</p><p>institutions détaillées</p></div>
+            <div class="chiffre"><p class="chiffre-nombre">30+</p><p>sources officielles</p></div>
+        </div>
+        <div class="chiffres" data-lang="en">
+            <div class="chiffre"><p class="chiffre-nombre">5</p><p>thematic tabs</p></div>
+            <div class="chiffre"><p class="chiffre-nombre">7</p><p>educational paths with quizzes</p></div>
+            <div class="chiffre"><p class="chiffre-nombre">140+</p><p>detailed institutions</p></div>
+            <div class="chiffre"><p class="chiffre-nombre">30+</p><p>official sources</p></div>
         </div>
     </div>
 </section>
 
+<!-- ===== EMC / Teachers ===== -->
 <section class="emc-section" id="enseignants">
     <div class="container">
-        <h2>Pourquoi utiliser Article 15 en classe ?</h2>
-        <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
-        <p class="section-sub">Un complément numérique concret pour vos cours d'EMC</p>
-        <div class="emc-grid">
+        <h2 data-lang="fr">Pourquoi utiliser Article 15 en classe ?</h2>
+        <h2 data-lang="en">Why use Article 15 in the classroom?</h2>
+        <div class="tricolore" aria-hidden="true"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+        <p class="section-sub" data-lang="fr">Un complément numérique concret pour vos cours d'EMC</p>
+        <p class="section-sub" data-lang="en">A practical digital companion for your civic education classes</p>
+
+        <div class="emc-grid" data-lang="fr">
             <div class="emc-card">
-                <div class="icon">&#x1F3DB;&#xFE0F;</div>
+                <div class="icon" aria-hidden="true">&#x1F3DB;&#xFE0F;</div>
                 <h3>Institutions vivantes</h3>
-                <p>100+ institutions détaillées avec données en temps réel : Élysée, Assemblée nationale, Sénat, Gouvernement, Conseil constitutionnel, autorités indépendantes, institutions européennes. Fiches enrichies avec annuaire, budget et organigramme.</p>
+                <p>124 institutions françaises et 17 internationales détaillées avec données en temps réel : Élysée, Assemblée nationale, Sénat, Gouvernement, Conseil constitutionnel, autorités indépendantes, institutions européennes et internationales. Fiches enrichies avec annuaire, budget et organigramme.</p>
             </div>
             <div class="emc-card">
-                <div class="icon">&#x1F393;</div>
-                <h3>6 parcours éducatifs avec quiz</h3>
+                <div class="icon" aria-hidden="true">&#x1F393;</div>
+                <h3>7 parcours éducatifs avec quiz</h3>
                 <p>Des parcours structurés du débutant à l'avancé, alignés sur les niveaux scolaires (3e au supérieur). Chaque parcours se termine par un quiz noté avec suivi de progression.</p>
             </div>
             <div class="emc-card">
-                <div class="icon">&#x1F5F3;&#xFE0F;</div>
+                <div class="icon" aria-hidden="true">&#x1F5F3;&#xFE0F;</div>
                 <h3>Démocratie en action</h3>
                 <p>Scrutins en direct, pétitions citoyennes, budget de l'État avec simulateur, promesses électorales suivies, dossiers thématiques sur l'actualité législative (Focus Sur).</p>
             </div>
             <div class="emc-card">
-                <div class="icon">&#x1F50D;</div>
+                <div class="icon" aria-hidden="true">&#x1F50D;</div>
                 <h3>Transparence et esprit critique</h3>
                 <p>Lobbying (données HATVP), déclarations de patrimoine, cumul des mandats, affaires judiciaires, coût de la démocratie : apprenez à vos élèves à questionner l'action publique avec des sources officielles.</p>
             </div>
             <div class="emc-card">
-                <div class="icon">&#x1F331;</div>
+                <div class="icon" aria-hidden="true">&#x1F331;</div>
                 <h3>Enjeux contemporains</h3>
                 <p>Mix énergétique en temps réel (RTE), émissions de gaz à effet de serre, bioéthique, budget de l'État avec simulateur, revenus et inégalités, fraudes, jeunesse, retraites, handicap, fonction publique : les grands débats nourris par des données réelles.</p>
             </div>
             <div class="emc-card">
-                <div class="icon">&#x1F4DA;</div>
+                <div class="icon" aria-hidden="true">&#x1F4DA;</div>
                 <h3>Textes fondamentaux et droit</h3>
                 <p>DDHC, Constitution, préambule de 1946, Charte de l'environnement, DUDH, CEDH, 19 traités internationaux ratifiés. Hiérarchie des normes et recherche juridique intégrées.</p>
+            </div>
+        </div>
+
+        <div class="emc-grid" data-lang="en">
+            <div class="emc-card">
+                <div class="icon" aria-hidden="true">&#x1F3DB;&#xFE0F;</div>
+                <h3>Living institutions</h3>
+                <p>124 French and 17 international institutions with real-time data: Élysée Palace, National Assembly, Senate, Government, Constitutional Council, independent authorities, European and international institutions. Enriched profiles with directories, budgets, and organizational charts.</p>
+            </div>
+            <div class="emc-card">
+                <div class="icon" aria-hidden="true">&#x1F393;</div>
+                <h3>7 educational paths with quizzes</h3>
+                <p>Structured paths from beginner to advanced, aligned with school levels (ages 14 to university). Each path ends with a graded quiz with progress tracking.</p>
+            </div>
+            <div class="emc-card">
+                <div class="icon" aria-hidden="true">&#x1F5F3;&#xFE0F;</div>
+                <h3>Democracy in action</h3>
+                <p>Live votes, citizen petitions, state budget simulator, tracked electoral promises, thematic reports on current legislation (Focus On).</p>
+            </div>
+            <div class="emc-card">
+                <div class="icon" aria-hidden="true">&#x1F50D;</div>
+                <h3>Transparency and critical thinking</h3>
+                <p>Lobbying (HATVP data), asset declarations, multiple office-holding, judicial cases, cost of democracy: teach your students to question public action using official sources.</p>
+            </div>
+            <div class="emc-card">
+                <div class="icon" aria-hidden="true">&#x1F331;</div>
+                <h3>Contemporary issues</h3>
+                <p>Real-time energy mix (RTE), greenhouse gas emissions, bioethics, state budget simulator, income and inequality, fraud, youth, pensions, disability, civil service: major debates fueled by real data.</p>
+            </div>
+            <div class="emc-card">
+                <div class="icon" aria-hidden="true">&#x1F4DA;</div>
+                <h3>Fundamental texts and law</h3>
+                <p>Declaration of the Rights of Man, Constitution, 1946 Preamble, Environmental Charter, UDHR, ECHR, 19 ratified international treaties. Hierarchy of norms and integrated legal research.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Parcours éducatifs -->
+<!-- ===== Parcours ===== -->
 <section class="parcours-section" id="parcours">
     <div class="container">
-        <h2>6 parcours pédagogiques intégrés</h2>
-        <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
-        <p class="section-sub">Des séquences d'apprentissage progressives avec évaluation, directement dans l'app</p>
-        <div class="parcours-grid">
+        <h2 data-lang="fr">7 parcours pédagogiques intégrés</h2>
+        <h2 data-lang="en">7 built-in educational paths</h2>
+        <div class="tricolore" aria-hidden="true"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+        <p class="section-sub" data-lang="fr">Des séquences d'apprentissage progressives avec évaluation, directement dans l'app</p>
+        <p class="section-sub" data-lang="en">Progressive learning sequences with assessment, directly in the app</p>
+
+        <div class="parcours-grid" data-lang="fr">
             <div class="parcours-card">
                 <span class="niveau-badge debutant">Débutant</span>
                 <h3>Les fondamentaux de la République</h3>
@@ -638,6 +197,13 @@
                 <span class="quiz-badge">&#x2705; Quiz d'évaluation inclus</span>
             </div>
             <div class="parcours-card">
+                <span class="niveau-badge intermediaire">Intermédiaire</span>
+                <h3>Décrypter l'information</h3>
+                <p class="classe">Première - Terminale</p>
+                <p>Désinformation, lobbying, esprit critique. Apprendre à analyser et vérifier l'information politique.</p>
+                <span class="quiz-badge">&#x2705; Quiz d'évaluation inclus</span>
+            </div>
+            <div class="parcours-card">
                 <span class="niveau-badge avance">Avancé</span>
                 <h3>La France dans le monde</h3>
                 <p class="classe">Terminale - Supérieur</p>
@@ -652,33 +218,89 @@
                 <span class="quiz-badge">&#x2705; Quiz d'évaluation inclus</span>
             </div>
         </div>
+
+        <div class="parcours-grid" data-lang="en">
+            <div class="parcours-card">
+                <span class="niveau-badge debutant">Beginner</span>
+                <h3>Fundamentals of the Republic</h3>
+                <p class="classe">Ages 14-16</p>
+                <p>Republican principles, symbols, founding texts. Understanding the foundations of the French Republic.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+            <div class="parcours-card">
+                <span class="niveau-badge debutant">Beginner</span>
+                <h3>Voting 101</h3>
+                <p class="classe">Ages 14-16</p>
+                <p>Voting systems, electoral process, universal suffrage. Everything you need to know before voting.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+            <div class="parcours-card">
+                <span class="niveau-badge intermediaire">Intermediate</span>
+                <h3>Understanding institutions</h3>
+                <p class="classe">Ages 16-18</p>
+                <p>Organizational chart of powers, separation and balance, role of each institution. From local to European.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+            <div class="parcours-card">
+                <span class="niveau-badge intermediaire">Intermediate</span>
+                <h3>Society and democracy</h3>
+                <p class="classe">Ages 16-18</p>
+                <p>Citizen participation, media, public opinion. The social dynamics of democratic life.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+            <div class="parcours-card">
+                <span class="niveau-badge intermediaire">Intermediate</span>
+                <h3>Decoding information</h3>
+                <p class="classe">Ages 16-18</p>
+                <p>Misinformation, lobbying, critical thinking. Learning to analyze and verify political information.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+            <div class="parcours-card">
+                <span class="niveau-badge avance">Advanced</span>
+                <h3>France in the world</h3>
+                <p class="classe">Ages 18+ / University</p>
+                <p>International relations, diplomacy, treaties, European and international institutions.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+            <div class="parcours-card">
+                <span class="niveau-badge avance">Advanced</span>
+                <h3>Colonial history and Overseas territories</h3>
+                <p class="classe">Ages 18+ / University</p>
+                <p>5 centuries of colonial history, 13 overseas territories, Françafrique. Understanding the legacy.</p>
+                <span class="quiz-badge">&#x2705; Assessment quiz included</span>
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- ===== Fonctionnalités ===== -->
 <section id="fonctionnalites" style="background: var(--gris-clair);">
     <div class="container">
-        <h2>Ce que vos élèves peuvent explorer</h2>
-        <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
-        <p class="section-sub">5 onglets, +40 écrans spécialisés</p>
-        <div class="features-grid">
+        <h2 data-lang="fr">Ce que vos élèves peuvent explorer</h2>
+        <h2 data-lang="en">What your students can explore</h2>
+        <div class="tricolore" aria-hidden="true"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+        <p class="section-sub" data-lang="fr">5 onglets, +120 écrans spécialisés</p>
+        <p class="section-sub" data-lang="en">5 tabs, 120+ specialized screens</p>
+
+        <div class="features-grid" data-lang="fr">
             <div class="feature">
-                <div class="icon">&#x1F3E0;</div>
+                <div class="icon" aria-hidden="true">&#x1F3E0;</div>
                 <h3>Accueil</h3>
                 <p>Tableau de bord de la vie démocratique</p>
                 <ul>
                     <li>Compte à rebours électoral</li>
                     <li>Pétitions tendance</li>
-                    <li>Dossiers Focus Sur (13+ sujets)</li>
+                    <li>Dossiers Focus Sur (15 sujets)</li>
                     <li>Fil d'actualités</li>
                     <li>Recherche globale</li>
                 </ul>
             </div>
             <div class="feature">
-                <div class="icon">&#x1F3DB;&#xFE0F;</div>
+                <div class="icon" aria-hidden="true">&#x1F3DB;&#xFE0F;</div>
                 <h3>Politique</h3>
                 <p>Institutions et vie parlementaire</p>
                 <ul>
-                    <li>100+ institutions détaillées</li>
+                    <li>140+ institutions détaillées</li>
                     <li>Fiches élus avec mandats et votes</li>
                     <li>Partis et groupes parlementaires</li>
                     <li>Thèmes et positions politiques</li>
@@ -688,7 +310,7 @@
                 </ul>
             </div>
             <div class="feature">
-                <div class="icon">&#x1F465;</div>
+                <div class="icon" aria-hidden="true">&#x1F465;</div>
                 <h3>Citoyen</h3>
                 <p>Transparence, économie et société</p>
                 <ul>
@@ -702,21 +324,21 @@
                 </ul>
             </div>
             <div class="feature">
-                <div class="icon">&#x1F4D6;</div>
+                <div class="icon" aria-hidden="true">&#x1F4D6;</div>
                 <h3>Savoir</h3>
                 <p>Deux modes : consulter et parcours</p>
                 <ul>
-                    <li>6 parcours éducatifs avec quiz</li>
+                    <li>7 parcours éducatifs avec quiz</li>
                     <li>Textes fondamentaux et internationaux</li>
                     <li>Schémas de gouvernance</li>
-                    <li>Glossaire de 200+ termes</li>
+                    <li>Glossaire de 190 termes</li>
                     <li>Outre-mer, histoire coloniale, Françafrique</li>
                     <li>Recherche juridique intégrée</li>
                     <li>Guide esprit critique</li>
                 </ul>
             </div>
             <div class="feature">
-                <div class="icon">&#x1F4F0;</div>
+                <div class="icon" aria-hidden="true">&#x1F4F0;</div>
                 <h3>Actu</h3>
                 <p>Actualité politique en continu</p>
                 <ul>
@@ -728,15 +350,88 @@
                 </ul>
             </div>
         </div>
+
+        <div class="features-grid" data-lang="en">
+            <div class="feature">
+                <div class="icon" aria-hidden="true">&#x1F3E0;</div>
+                <h3>Home</h3>
+                <p>Democratic life dashboard</p>
+                <ul>
+                    <li>Election countdown</li>
+                    <li>Trending petitions</li>
+                    <li>Focus On reports (15 topics)</li>
+                    <li>News feed</li>
+                    <li>Global search</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <div class="icon" aria-hidden="true">&#x1F3DB;&#xFE0F;</div>
+                <h3>Politics</h3>
+                <p>Institutions and parliamentary life</p>
+                <ul>
+                    <li>140+ detailed institutions</li>
+                    <li>Elected officials with mandates and votes</li>
+                    <li>Parties and parliamentary groups</li>
+                    <li>Political themes and positions</li>
+                    <li>2022 proposals (464) and promises</li>
+                    <li>Live parliamentary proceedings</li>
+                    <li>Political calendar</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <div class="icon" aria-hidden="true">&#x1F465;</div>
+                <h3>Citizen</h3>
+                <p>Transparency, economy and society</p>
+                <ul>
+                    <li>Votes and lobbying (HATVP)</li>
+                    <li>State budget and simulator</li>
+                    <li>Income, employment, foreign trade</li>
+                    <li>Fraud: tax, social, evasion</li>
+                    <li>Social: youth, pensions, disability</li>
+                    <li>Ecology, RTE energy, bioethics</li>
+                    <li>Defence, civil service, government careers</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <div class="icon" aria-hidden="true">&#x1F4D6;</div>
+                <h3>Knowledge</h3>
+                <p>Two modes: browse and learn</p>
+                <ul>
+                    <li>7 educational paths with quizzes</li>
+                    <li>Fundamental and international texts</li>
+                    <li>Governance diagrams</li>
+                    <li>Glossary of 190 terms</li>
+                    <li>Overseas territories, colonial history, Françafrique</li>
+                    <li>Integrated legal research</li>
+                    <li>Critical thinking guide</li>
+                </ul>
+            </div>
+            <div class="feature">
+                <div class="icon" aria-hidden="true">&#x1F4F0;</div>
+                <h3>News</h3>
+                <p>Continuous political news</p>
+                <ul>
+                    <li>Parliamentary news feed</li>
+                    <li>Official Journal in real time</li>
+                    <li>Press releases and reports</li>
+                    <li>Questions to the government</li>
+                    <li>Pending legislation</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- ===== Programme ===== -->
 <section class="programme-section" id="programme">
     <div class="container">
-        <h2>Ancrage dans les programmes</h2>
-        <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
-        <p class="section-sub">Article 15 couvre les thèmes des programmes EMC, histoire-géographie et sciences politiques</p>
-        <div class="programme-grid">
+        <h2 data-lang="fr">Ancrage dans les programmes</h2>
+        <h2 data-lang="en">Aligned with French curricula</h2>
+        <div class="tricolore" aria-hidden="true"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+        <p class="section-sub" data-lang="fr">Article 15 couvre les thèmes des programmes EMC, histoire-géographie et sciences politiques</p>
+        <p class="section-sub" data-lang="en">Article 15 covers topics from the civic education, history-geography, and political science curricula</p>
+
+        <div class="programme-grid" data-lang="fr">
             <div class="programme-card">
                 <span class="niveau">Cycle 3 &mdash; CM1/CM2/6e</span>
                 <h3>Le droit et la règle</h3>
@@ -775,6 +470,7 @@
                     <li>Données HATVP et déclarations</li>
                     <li>Travaux parlementaires en direct</li>
                     <li>Parcours &laquo; Société et démocratie &raquo;</li>
+                    <li>Parcours &laquo; Décrypter l'information &raquo;</li>
                 </ul>
             </div>
             <div class="programme-card">
@@ -800,82 +496,152 @@
                 </ul>
             </div>
         </div>
-    </div>
-</section>
 
-<section>
-    <div class="container">
-        <h2>Nos garanties</h2>
-        <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
-        <p class="section-sub">Une application pensée pour un usage en toute confiance</p>
-        <div class="garanties">
-            <div class="garantie">
-                <div class="icon">&#x1F4B0;</div>
-                <h3>100% gratuite</h3>
-                <p>Pas d'abonnement, pas d'achat intégré, pas de modèle freemium</p>
+        <div class="programme-grid" data-lang="en">
+            <div class="programme-card">
+                <span class="niveau">Ages 9-11 (Cycle 3)</span>
+                <h3>Law and rules</h3>
+                <p>Discover the institutions of the Republic, understand republican symbols and values.</p>
+                <ul>
+                    <li>Knowledge tab: republican principles, symbols</li>
+                    <li>"Fundamentals of the Republic" path</li>
+                    <li>Illustrated institution profiles</li>
+                </ul>
             </div>
-            <div class="garantie">
-                <div class="icon">&#x1F6AB;</div>
-                <h3>Zéro publicité</h3>
-                <p>Aucune pub, aucun sponsor, aucune influence commerciale</p>
+            <div class="programme-card">
+                <span class="niveau">Ages 12-14 (Cycle 4)</span>
+                <h3>Judgement and civic engagement</h3>
+                <p>Explore democratic life: elections, parties, votes, citizen participation.</p>
+                <ul>
+                    <li>"Voting 101" path</li>
+                    <li>Live petitions and votes</li>
+                    <li>Election countdown</li>
+                </ul>
             </div>
-            <div class="garantie">
-                <div class="icon">&#x2696;&#xFE0F;</div>
-                <h3>Non partisane</h3>
-                <p>Données brutes sans modification éditoriale ni orientation politique</p>
+            <div class="programme-card">
+                <span class="niveau">Age 15-16 (Seconde)</span>
+                <h3>Freedom and freedoms</h3>
+                <p>Fundamental texts, organizational chart of powers, institutional balance.</p>
+                <ul>
+                    <li>Declaration of Rights, Constitution, 1946 Preamble</li>
+                    <li>Interactive hierarchy of norms</li>
+                    <li>"Understanding institutions" path</li>
+                </ul>
             </div>
-            <div class="garantie">
-                <div class="icon">&#x1F512;</div>
-                <h3>Conforme RGPD</h3>
-                <p>Aucune donnée personnelle collectée, aucun traceur, aucun cookie</p>
+            <div class="programme-card">
+                <span class="niveau">Age 16-17 (Première)</span>
+                <h3>Democratic society</h3>
+                <p>Transparency, lobbying, parliamentary life, media and public opinion.</p>
+                <ul>
+                    <li>HATVP data and declarations</li>
+                    <li>Live parliamentary proceedings</li>
+                    <li>"Society and democracy" path</li>
+                    <li>"Decoding information" path</li>
+                </ul>
             </div>
-            <div class="garantie">
-                <div class="icon">&#x1F4C2;</div>
-                <h3>Open data</h3>
-                <p>Toutes les sources sont officielles, publiques et vérifiables</p>
+            <div class="programme-card">
+                <span class="niveau">Age 17-18 (Terminale HGGSP)</span>
+                <h3>Democracy and contemporary issues</h3>
+                <p>Budget, ecology, economic data, citizen participation, international relations.</p>
+                <ul>
+                    <li>State budget with simulator</li>
+                    <li>Real-time ecological data</li>
+                    <li>Foreign trade and dependencies</li>
+                    <li>"France in the world" path</li>
+                </ul>
             </div>
-            <div class="garantie">
-                <div class="icon">&#x1F64B;</div>
-                <h3>Projet citoyen</h3>
-                <p>Développée bénévolement par un citoyen indépendant</p>
+            <div class="programme-card">
+                <span class="niveau">University</span>
+                <h3>Political science and law</h3>
+                <p>Raw data, votes, group analysis, committees, international law.</p>
+                <ul>
+                    <li>19 ratified international treaties</li>
+                    <li>Integrated legal research</li>
+                    <li>"Colonial history" path</li>
+                    <li>European and international institutions</li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
+<!-- ===== Garanties ===== -->
+<section>
+    <div class="container">
+        <h2 data-lang="fr">Nos garanties</h2>
+        <h2 data-lang="en">Our guarantees</h2>
+        <div class="tricolore" aria-hidden="true"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+        <p class="section-sub" data-lang="fr">Une application pensée pour un usage en toute confiance</p>
+        <p class="section-sub" data-lang="en">An application designed for confident, worry-free use</p>
+
+        <div class="garanties" data-lang="fr">
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F4B0;</div><h3>100% gratuite</h3><p>Pas d'abonnement, pas d'achat intégré, pas de modèle freemium</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F6AB;</div><h3>Zéro publicité</h3><p>Aucune pub, aucun sponsor, aucune influence commerciale</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x2696;&#xFE0F;</div><h3>Non partisane</h3><p>Données brutes sans modification éditoriale ni orientation politique</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F512;</div><h3>Conforme RGPD</h3><p>Aucune donnée personnelle collectée, aucun traceur, aucun cookie</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F4C2;</div><h3>Open data</h3><p>Toutes les sources sont officielles, publiques et vérifiables</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F64B;</div><h3>Projet citoyen</h3><p>Développée bénévolement par un citoyen indépendant</p></div>
+        </div>
+
+        <div class="garanties" data-lang="en">
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F4B0;</div><h3>100% free</h3><p>No subscription, no in-app purchases, no freemium model</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F6AB;</div><h3>Zero ads</h3><p>No ads, no sponsors, no commercial influence</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x2696;&#xFE0F;</div><h3>Non-partisan</h3><p>Raw data without editorial modification or political bias</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F512;</div><h3>GDPR compliant</h3><p>No personal data collected, no trackers, no cookies</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F4C2;</div><h3>Open data</h3><p>All sources are official, public, and verifiable</p></div>
+            <div class="garantie"><div class="icon" aria-hidden="true">&#x1F64B;</div><h3>Citizen project</h3><p>Developed voluntarily by an independent citizen</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA Final ===== -->
 <section class="cta-final">
     <div class="container">
-        <h2>Prêt à essayer ?</h2>
-        <div class="tricolore" style="margin-top: 1rem;"><span class="bleu"></span><span class="blanc" style="background: rgba(255,255,255,0.5);"></span><span class="rouge"></span></div>
-        <p>
-            Téléchargez Article 15 gratuitement et découvrez comment l'intégrer dans vos cours d'EMC, d'histoire-géographie ou de sciences politiques.
-        </p>
-        <div class="cta-group">
+        <h2 data-lang="fr">Prêt à essayer ?</h2>
+        <h2 data-lang="en">Ready to try it?</h2>
+        <div class="tricolore" aria-hidden="true" style="margin-top: 1rem;"><span class="bleu"></span><span class="blanc" style="background: rgba(255,255,255,0.5);"></span><span class="rouge"></span></div>
+        <p data-lang="fr">Téléchargez Article 15 gratuitement et découvrez comment l'intégrer dans vos cours d'EMC, d'histoire-géographie ou de sciences politiques.</p>
+        <p data-lang="en">Download Article 15 for free and discover how to integrate it into your civic education, history-geography, or political science classes.</p>
+        <div class="cta-group" data-lang="fr">
             <a href="https://apps.apple.com/app/article-15" class="btn btn-primary">Télécharger sur l'App Store</a>
             <a href="#contact" class="btn btn-secondary">Nous contacter</a>
         </div>
+        <div class="cta-group" data-lang="en">
+            <a href="https://apps.apple.com/app/article-15" class="btn btn-primary">Download on the App Store</a>
+            <a href="#contact" class="btn btn-secondary">Contact us</a>
+        </div>
     </div>
 </section>
 
+<!-- ===== Contact ===== -->
 <section class="contact-section" id="contact">
     <div class="container">
         <h2>Contact</h2>
-        <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
-        <p class="section-sub">Une question ? Une idée d'activité pédagogique ? Un retour d'expérience en classe ?</p>
-        <p>
-            Email : <a href="mailto:contact@article15.app"><strong>contact@article15.app</strong></a>
-        </p>
+        <div class="tricolore" aria-hidden="true"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+        <p class="section-sub" data-lang="fr">Une question ? Une idée d'activité pédagogique ? Un retour d'expérience en classe ?</p>
+        <p class="section-sub" data-lang="en">A question? An idea for a classroom activity? Feedback from your experience?</p>
+        <p>Email : <a href="mailto:article15.app@proton.me"><strong>article15.app@proton.me</strong></a></p>
     </div>
 </section>
 
+</main>
+
+<!-- ===== Footer ===== -->
 <footer>
-    <p>
+    <p data-lang="fr">
         <strong>Article 15</strong> &mdash; Application citoyenne indépendante et non partisane<br><br>
         Toutes les données proviennent de sources publiques officielles.<br>
         Aucune donnée personnelle n'est collectée.<br><br>
         <a href="privacy.html">Politique de confidentialité</a> &middot; <a href="cgu.html">Conditions générales d'utilisation</a> &middot; <a href="accessibility.html">Accessibilité</a> &middot; <a href="age-rating.html">Classification d'âge</a>
     </p>
+    <p data-lang="en">
+        <strong>Article 15</strong> &mdash; Independent and non-partisan civic application<br><br>
+        All data comes from official public sources.<br>
+        No personal data is collected.<br><br>
+        <a href="privacy.html">Privacy Policy</a> &middot; <a href="cgu.html">Terms of Use</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="age-rating.html">Age Rating</a>
+    </p>
 </footer>
 
+<script src="nav.js"></script>
 </body>
 </html>

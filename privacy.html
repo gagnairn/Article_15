@@ -5,236 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article 15 — Politique de confidentialité</title>
     <meta name="description" content="Politique de confidentialité de l'application Article 15.">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <meta property="og:title" content="Article 15 — Politique de confidentialité">
     <meta property="og:description" content="Politique de confidentialité de l'application Article 15.">
-    <meta property="og:image" content="icon.png">
+    <meta property="og:image" content="https://gagnairn.github.io/Article_15/images/og-image.png">
     <meta property="og:type" content="website">
-    <style>
-        :root {
-            --bleu: #000091;
-            --rouge: #E1000F;
-            --blanc: #FFFFFF;
-            --gris-clair: #F6F6F6;
-            --gris-texte: #3A3A3A;
-            --bleu-clair: #E8EDFF;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: var(--gris-texte);
-            line-height: 1.7;
-            background: var(--gris-clair);
-        }
-
-        header {
-            background: var(--bleu);
-            color: var(--blanc);
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header .logo {
-            font-family: "Didot", "Georgia", serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        header nav {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        header nav a {
-            color: var(--blanc);
-            text-decoration: none;
-            font-size: 0.9rem;
-            opacity: 0.85;
-            transition: opacity 0.2s;
-        }
-
-        header nav a:hover {
-            opacity: 1;
-        }
-
-        .lang-switch {
-            display: flex;
-            background: rgba(255,255,255,0.15);
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-
-        .lang-switch button {
-            background: none;
-            border: none;
-            color: var(--blanc);
-            padding: 0.3rem 0.7rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: all 0.2s;
-        }
-
-        .lang-switch button.active {
-            background: rgba(255,255,255,0.25);
-            opacity: 1;
-        }
-
-        .tricolore {
-            display: flex;
-            height: 4px;
-        }
-
-        .tricolore span { flex: 1; }
-        .tricolore .bleu { background: #0055A4; }
-        .tricolore .blanc { background: #FFFFFF; }
-        .tricolore .rouge { background: #EF4135; }
-
-        main {
-            max-width: 720px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            color: var(--bleu);
-            margin-bottom: 0.3rem;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-        }
-
-        .card {
-            background: var(--blanc);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            margin-bottom: 1.2rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-        }
-
-        .card h2 {
-            font-size: 1.1rem;
-            color: var(--bleu);
-            margin-bottom: 0.6rem;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .card a {
-            color: var(--bleu);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        [data-lang] { display: none; }
-        [data-lang="fr"] { display: block; }
-        a[data-lang="fr"] { display: inline; }
-
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-
-            header nav {
-                gap: 0.5rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            main {
-                margin: 1.5rem auto;
-            }
-
-            h1 {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
+    <meta name="theme-color" content="#000091">
+    <meta property="og:url" content="https://gagnairn.github.io/Article_15/privacy.html">
+    <link rel="canonical" href="https://gagnairn.github.io/Article_15/privacy.html">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Article 15</a>
-        <nav>
-            <a href="index.html" data-lang="fr">Accueil</a>
-            <a href="index.html" data-lang="en">Home</a>
-            <a href="index.html#enseignants" data-lang="fr">Enseignants</a>
-            <a href="index.html#enseignants" data-lang="en">Teachers</a>
-            <a href="index.html#parcours" data-lang="fr">Parcours</a>
-            <a href="index.html#parcours" data-lang="en">Paths</a>
-            <a href="index.html#fonctionnalites" data-lang="fr">Contenu</a>
-            <a href="index.html#fonctionnalites" data-lang="en">Content</a>
-            <a href="index.html#programme" data-lang="fr">Programmes</a>
-            <a href="index.html#programme" data-lang="en">Programs</a>
-            <a href="index.html#contact" data-lang="fr">Contact</a>
-            <a href="index.html#contact" data-lang="en">Contact</a>
-            <a href="privacy.html" data-lang="fr">Confidentialité</a>
-            <a href="privacy.html" data-lang="en">Privacy</a>
-            <a href="cgu.html" data-lang="fr">CGU</a>
-            <a href="cgu.html" data-lang="en">Terms</a>
-            <a href="accessibility.html" data-lang="fr">Accessibilité</a>
-            <a href="accessibility.html" data-lang="en">Accessibility</a>
-            <a href="age-rating.html" data-lang="fr">Classification d'âge</a>
-            <a href="age-rating.html" data-lang="en">Age rating</a>
-        </nav>
-    </header>
-    <div style="background:var(--bleu);text-align:center;padding:0.4rem 0;">
-        <div class="lang-switch" style="display:inline-flex;">
-            <button id="lang-fr" class="active" onclick="setLang('fr')">FR</button>
-            <button id="lang-en" onclick="setLang('en')">EN</button>
-        </div>
-    </div>
-    <div class="tricolore"><span class="bleu"></span><span class="blanc"></span><span class="rouge"></span></div>
+<body class="legal-page">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <header></header>
 
-    <main>
-        <!-- FR -->
+    <main id="main-content">
         <h1 data-lang="fr">Politique de confidentialité</h1>
         <p class="subtitle" data-lang="fr">Dernière mise à jour : 17 avril 2026</p>
-        <!-- EN -->
         <h1 data-lang="en">Privacy Policy</h1>
         <p class="subtitle" data-lang="en">Last updated: April 17, 2026</p>
 
-        <!-- Responsable du traitement / Data controller -->
         <div class="card">
             <h2 data-lang="fr">Responsable du traitement</h2>
             <p data-lang="fr">L'application Article 15 est éditée à titre personnel par un développeur indépendant, non affilié à aucun parti politique, institution ou organisation.</p>
-            <p data-lang="fr">Contact : <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <p data-lang="fr">Contact : <a href="mailto:article15.app@proton.me">article15.app@proton.me</a></p>
             <h2 data-lang="en">Data controller</h2>
             <p data-lang="en">The Article 15 application is published independently by an individual developer, not affiliated with any political party, institution, or organization.</p>
-            <p data-lang="en">Contact: <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <p data-lang="en">Contact: <a href="mailto:article15.app@proton.me">article15.app@proton.me</a></p>
         </div>
 
-        <!-- Données personnelles collectées / Personal data collected -->
         <div class="card">
             <h2 data-lang="fr">Données personnelles collectées</h2>
             <p data-lang="fr">Article 15 <strong>ne collecte, ne stocke et ne transmet aucune donnée personnelle</strong>.</p>
@@ -244,7 +44,6 @@
             <p data-lang="en">No user account is required. No personal identifier is requested. The application does not require any registration.</p>
         </div>
 
-        <!-- Traceurs et cookies / Trackers and cookies -->
         <div class="card">
             <h2 data-lang="fr">Traceurs et cookies</h2>
             <p data-lang="fr">L'application <strong>n'intègre aucun traceur, cookie ou outil d'analyse comportementale</strong>. Aucun SDK publicitaire n'est utilisé. Aucune donnée de navigation n'est enregistrée.</p>
@@ -252,7 +51,6 @@
             <p data-lang="en">The application <strong>does not integrate any tracker, cookie, or behavioral analytics tool</strong>. No advertising SDK is used. No browsing data is recorded.</p>
         </div>
 
-        <!-- Firebase (Google) -->
         <div class="card">
             <h2 data-lang="fr">Firebase (Google)</h2>
             <p data-lang="fr">L'application utilise Firebase uniquement pour deux fonctionnalités :</p>
@@ -264,7 +62,6 @@
             <p data-lang="en"><strong>2. Crash reports</strong> — Firebase Crashlytics collects anonymous crash reports to improve the application's stability. These reports contain technical information (device model, iOS version, error trace) but no data that could identify a user.</p>
         </div>
 
-        <!-- Conservation des données / Data retention -->
         <div class="card">
             <h2 data-lang="fr">Conservation des données</h2>
             <p data-lang="fr">Les retours utilisateurs envoyés via le formulaire de contact sont conservés dans Firebase Firestore pour une durée maximale de 12 mois, puis supprimés.</p>
@@ -274,7 +71,6 @@
             <p data-lang="en">Crash reports collected by Firebase Crashlytics are retained for 90 days in accordance with Google Firebase's default retention policy.</p>
         </div>
 
-        <!-- Vie privée des mineurs / Children's privacy -->
         <div class="card">
             <h2 data-lang="fr">Vie privée des mineurs</h2>
             <p data-lang="fr">Article 15 est une application à vocation éducative pouvant être utilisée par des mineurs dans un cadre scolaire (EMC, du collège au supérieur).</p>
@@ -284,7 +80,6 @@
             <p data-lang="en">The application <strong>does not collect any personal data, regardless of the user's age</strong>. No account is required, no identifier is requested, and no tracker is integrated. The application complies with data protection requirements for minors (GDPR, COPPA).</p>
         </div>
 
-        <!-- Données consultées par l'application / Data accessed by the application -->
         <div class="card">
             <h2 data-lang="fr">Données consultées par l'application</h2>
             <p data-lang="fr">Article 15 affiche des données provenant exclusivement de <strong>sources publiques et ouvertes</strong> (Assemblée nationale, Sénat, Légifrance, data.gouv.fr, Banque mondiale, Eurostat, etc.).</p>
@@ -294,7 +89,6 @@
             <p data-lang="en">This data is accessed in real time through the public APIs of these institutions. It does not pass through any intermediary server and is not permanently stored on your device.</p>
         </div>
 
-        <!-- Partage de données avec des tiers / Data sharing with third parties -->
         <div class="card">
             <h2 data-lang="fr">Partage de données avec des tiers</h2>
             <p data-lang="fr">Article 15 <strong>ne partage aucune donnée avec des tiers</strong> à des fins commerciales, publicitaires ou de profilage.</p>
@@ -304,17 +98,15 @@
             <p data-lang="en">The only network communications are direct calls to the public APIs listed in the application and the Firebase transmissions described above.</p>
         </div>
 
-        <!-- Droits des utilisateurs (RGPD) / User rights (GDPR) -->
         <div class="card">
             <h2 data-lang="fr">Droits des utilisateurs (RGPD)</h2>
             <p data-lang="fr">Conformément au Règlement Général sur la Protection des Données (UE 2016/679), vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données, ainsi que d'un droit d'opposition et de limitation du traitement.</p>
-            <p data-lang="fr">Dans la mesure où Article 15 ne collecte aucune donnée personnelle, ces droits n'ont pas d'objet pratique. Néanmoins, pour toute question, vous pouvez contacter : <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <p data-lang="fr">Dans la mesure où Article 15 ne collecte aucune donnée personnelle, ces droits n'ont pas d'objet pratique. Néanmoins, pour toute question, vous pouvez contacter : <a href="mailto:article15.app@proton.me">article15.app@proton.me</a></p>
             <h2 data-lang="en">User rights (GDPR)</h2>
             <p data-lang="en">In accordance with the General Data Protection Regulation (EU 2016/679), you have the right to access, rectify, erase, and port your data, as well as the right to object to and restrict processing.</p>
-            <p data-lang="en">Since Article 15 does not collect any personal data, these rights have no practical application. However, for any questions, you may contact: <a href="mailto:article15app@proton.me">article15app@proton.me</a></p>
+            <p data-lang="en">Since Article 15 does not collect any personal data, these rights have no practical application. However, for any questions, you may contact: <a href="mailto:article15.app@proton.me">article15.app@proton.me</a></p>
         </div>
 
-        <!-- Modifications / Changes -->
         <div class="card">
             <h2 data-lang="fr">Modifications</h2>
             <p data-lang="fr">Cette politique de confidentialité peut être mise à jour. Toute modification sera reflétée sur cette page avec une date de mise à jour actualisée.</p>
@@ -328,22 +120,6 @@
         <span data-lang="en">Article 15 — Independent civic application</span>
     </footer>
 
-    <script>
-        function setLang(lang) {
-            document.documentElement.lang = lang;
-            document.querySelectorAll('[data-lang]').forEach(function(el) {
-                if (el.dataset.lang === lang) {
-                    el.style.display = el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline' : 'block';
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-            document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
-            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-            localStorage.setItem('legal-lang', lang);
-        }
-        var saved = localStorage.getItem('legal-lang');
-        if (saved) setLang(saved);
-    </script>
+    <script src="nav.js"></script>
 </body>
 </html>
