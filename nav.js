@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { fr: 'Parcours',     en: 'Paths',         href: 'index.html#parcours' },
         { fr: 'Contenu',      en: 'Content',       href: 'index.html#fonctionnalites' },
         { fr: 'Programmes',   en: 'Programs',      href: 'index.html#programme' },
+        { fr: 'Garanties',    en: 'Guarantees',    href: 'index.html#garanties' },
         { fr: 'Contact',      en: 'Contact',       href: 'index.html#contact' },
         { fr: 'Confidentialité', en: 'Privacy',     href: 'privacy.html' },
         { fr: 'CGU',          en: 'Terms',          href: 'cgu.html' },

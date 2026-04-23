@@ -470,7 +470,7 @@ section .section-sub {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
 }
 
@@ -586,7 +586,7 @@ section .section-sub {
 
 .garanties {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     text-align: center;
 }
@@ -747,11 +747,11 @@ span[data-lang="fr"] { display: inline !important; }
 
     .parcours-grid { grid-template-columns: 1fr; gap: 1.2rem; }
 
-    .features-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .features-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 
     .programme-grid { grid-template-columns: 1fr; gap: 1.2rem; }
 
-    .garanties { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .garanties { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 
     .rating-grid { grid-template-columns: 1fr; }
 
@@ -772,6 +772,7 @@ span[data-lang="fr"] { display: inline !important; }
     .chiffre-nombre { font-size: 1.7rem; }
     .chiffre p { font-size: 0.82rem; }
 
+    .features-grid { grid-template-columns: 1fr; }
     .garanties { grid-template-columns: 1fr; }
 
     .cta-group { flex-direction: column; align-items: center; }
