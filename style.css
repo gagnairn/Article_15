@@ -167,6 +167,13 @@ footer a:hover {
     text-decoration: underline;
 }
 
+footer h2 {
+    color: var(--blanc);
+    font-family: "Didot", "Georgia", serif;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
 /* ===== Legal Page Base ===== */
 
 .legal-page {
@@ -192,12 +199,6 @@ footer a:hover {
     margin-bottom: 2rem;
 }
 
-.legal-page footer {
-    background: transparent;
-    color: #666;
-    padding: 2rem 1rem;
-    font-size: 0.8rem;
-}
 
 /* ===== Cards ===== */
 

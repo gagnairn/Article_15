@@ -113,6 +113,52 @@ document.addEventListener('DOMContentLoaded', function() {
         langBar.insertAdjacentElement('afterend', triBar);
     }
 
+    var footer = document.querySelector('footer');
+    if (footer) {
+        footer.innerHTML = '';
+
+        var h2Fr = document.createElement('h2');
+        h2Fr.dataset.lang = 'fr';
+        h2Fr.textContent = 'À propos';
+        var h2En = document.createElement('h2');
+        h2En.dataset.lang = 'en';
+        h2En.textContent = 'About';
+
+        var footerLinks = [
+            { fr: 'Politique de confidentialité', en: 'Privacy Policy', href: 'privacy.html' },
+            { fr: "Conditions générales d'utilisation", en: 'Terms of Use', href: 'cgu.html' },
+            { fr: 'Accessibilité', en: 'Accessibility', href: 'accessibility.html' },
+            { fr: "Classification d'âge", en: 'Age Rating', href: 'age-rating.html' }
+        ];
+
+        var pFr = document.createElement('p');
+        pFr.dataset.lang = 'fr';
+        var pEn = document.createElement('p');
+        pEn.dataset.lang = 'en';
+
+        footerLinks.forEach(function(link, i) {
+            var aFr = document.createElement('a');
+            aFr.href = link.href;
+            aFr.textContent = link.fr;
+            pFr.appendChild(aFr);
+
+            var aEn = document.createElement('a');
+            aEn.href = link.href;
+            aEn.textContent = link.en;
+            pEn.appendChild(aEn);
+
+            if (i < footerLinks.length - 1) {
+                pFr.appendChild(document.createTextNode(' · '));
+                pEn.appendChild(document.createTextNode(' · '));
+            }
+        });
+
+        footer.appendChild(h2Fr);
+        footer.appendChild(h2En);
+        footer.appendChild(pFr);
+        footer.appendChild(pEn);
+    }
+
     var saved = localStorage.getItem('legal-lang');
     if (saved) setLang(saved);
 });
